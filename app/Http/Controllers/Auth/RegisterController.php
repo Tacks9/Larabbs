@@ -21,7 +21,7 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
+    // 框架加载 Illuminate\Foundation\Auth\RegistersUsers  trait 来引入框架的注册功能
     use RegistersUsers;
 
     /**

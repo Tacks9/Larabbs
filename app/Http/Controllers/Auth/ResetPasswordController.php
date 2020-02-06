@@ -27,4 +27,17 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+
+     public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
+    // 重写 ResetsPasswords sendResetResponse()方法
+    protected function sendResetResponse(Request $request, $response)
+    {
+        // 添加一条提示信息
+        session()->flash('success', '密码更新成功，您已成功登录！');
+        return redirect($this->redirectPath());
+    }
 }

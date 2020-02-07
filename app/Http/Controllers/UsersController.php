@@ -9,6 +9,13 @@ use App\Handlers\ImageUploadHandler;
 
 class UsersController extends Controller
 {
+
+    public function __construct()
+    {
+        // 调用中间件  除了show 其他都需要登录才可以访问 首选 except 方法
+        $this->middleware('auth', ['except' => ['show']]);
+    }
+
     // 个人页面
     public function show(User $user)
     {
@@ -18,14 +25,16 @@ class UsersController extends Controller
     // 编辑页面
     public function edit(User $user)
     {
+        $this->authorize('update', $user); // 当前用户登录的
         return view('users.edit', compact('user'));
     }
 
     // 编辑保存
     public function update(UserRequest $request, ImageUploadHandler $uploader, User $user)
     {
-        $data = $request->all();
+        $this->authorize('update', $user); // 当前用户登录的
 
+        $data = $request->all();
         // 头像处理
         if ($request->avatar) {
             $result = $uploader->save($request->avatar, 'avatars', $user->id, 416);

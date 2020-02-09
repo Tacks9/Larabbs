@@ -26,7 +26,7 @@
     <div class="container">
 
       @include('shared._messages')
-      <!-- @yield('content') 占位符声明，允许继承此模板的页面注入内容。 -->
+      <!-- yield('content') 占位符声明，允许继承此模板的页面注入内容。 -->
       @yield('content')
 
     </div>

@@ -46,5 +46,8 @@ Route::post('email/resend', 'Auth\VerificationController@resend')->name('verific
 // 注册一个用户  资源路由 严格遵循了 RESTful URI 的规范
 Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
 
-
+// 帖子 代码生成器做的
 Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+
+// 帖子分类
+Route::resource('categories', 'CategoriesController', ['only' => ['show']]);

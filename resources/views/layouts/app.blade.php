@@ -11,6 +11,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- @yield('title', 'LaraBBS') 继承此模板的页面  是否有设置title变量 -->
   <title>@yield('title', 'LaraBBS') - Laravel 进阶教程</title>
+  <meta name="description" content="@yield('description', 'LaraBBS 爱好者社区')" />
 
   <!-- Styles mix('css/app.css') 会根据 webpack.mix.js 的逻辑来生成 CSS 文件链接。 -->
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">

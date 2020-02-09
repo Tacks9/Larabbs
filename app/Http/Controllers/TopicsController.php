@@ -31,7 +31,7 @@ class TopicsController extends Controller
 
     public function show(Topic $topic)
     {
-        return view('topics.show', compact('topic'));
+        return view('topics.show', compact('topic')); // 『隐性路由模型绑定』 自动解析为 ID的帖子对象
     }
 
 	public function create(Topic $topic)

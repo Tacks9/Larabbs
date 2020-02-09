@@ -15,6 +15,8 @@
   <!-- Styles mix('css/app.css') 会根据 webpack.mix.js 的逻辑来生成 CSS 文件链接。 -->
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
+  <!-- 加载发布帖子需要的样式 -->
+   @yield('styles')
 </head>
 
 <body>
@@ -36,6 +38,9 @@
 
   <!-- Scripts -->
   <script src="{{ mix('js/app.js') }}"></script>
+
+  <!-- 加载 新建帖子的时候需要的编辑器 -->
+  @yield('scripts')
 </body>
 
 </html>

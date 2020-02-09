@@ -17,7 +17,11 @@ class TopicsController extends Controller
 	public function index()
 	{
 		// $topics = Topic::paginate();
-        $topics = Topic::with('user', 'category')->paginate(30); // 预加载 缓存 关联关系
+        // $topics = Topic::with('user', 'category')->paginate(30); // 预加载 缓存 关联关系
+        // $request->order 获取url后面order的参数
+        $topics = $topic->withOrder($request->order)
+                        ->with('user', 'category')
+                        ->paginate(20);
 		return view('topics.index', compact('topics'));
 	}
 

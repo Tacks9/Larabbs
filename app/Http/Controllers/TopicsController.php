@@ -14,7 +14,7 @@ class TopicsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-	public function index()
+	public function index(Request $request, Topic $topic)
 	{
 		// $topics = Topic::paginate();
         // $topics = Topic::with('user', 'category')->paginate(30); // 预加载 缓存 关联关系

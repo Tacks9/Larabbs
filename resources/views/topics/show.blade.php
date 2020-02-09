@@ -41,6 +41,7 @@
 
           <div class="topic-body mt-4 mb-4">
             {!! $topic->body !!}
+            <!-- 直接数据，不会对数据做任何处理 -->
           </div>
 
           <div class="operate">

@@ -63,15 +63,25 @@
 @stop
 
 @section('scripts')
-    <script src="{{ asset('js/module.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/hotkeys.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/uploader.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/simditor.js') }}" type="text/javascript"></script>
+  <script type="text/javascript" src="{{ asset('js/module.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/hotkeys.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/uploader.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/simditor.js') }}"></script>
 
   <script>
     $(document).ready(function() {
       var editor = new Simditor({
         textarea: $('#editor'),
+        upload: {
+          url: '{{ route('topics.upload_image') }}',
+          params: {
+            _token: '{{ csrf_token() }}'
+          },
+          fileKey: 'upload_file', // 服务器端获取图片的键值
+          connectionCount: 3,     // 多只能同时上传 3 张图片
+          leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+        },
+        pasteImage: true,// 设定是否支持图片黏贴上传，这里我们使用 true 进行开启
       });
     });
   </script>

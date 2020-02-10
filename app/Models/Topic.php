@@ -20,6 +20,11 @@ class Topic extends Model
         return $this->belongsTo(User::class);
     }
 
+    // 一个帖子 可以有多个评论
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
 
 /*
     对应 Eloquent 模型方法前加上一个 scope 前缀

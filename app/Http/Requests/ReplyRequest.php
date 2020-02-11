@@ -6,36 +6,10 @@ class ReplyRequest extends Request
 {
     public function rules()
     {
-        switch($this->method())
-        {
-            // CREATE
-            case 'POST':
-            {
-                return [
-                    // CREATE ROLES
-                ];
-            }
-            // UPDATE
-            case 'PUT':
-            case 'PATCH':
-            {
-                return [
-                    // UPDATE ROLES
-                ];
-            }
-            case 'GET':
-            case 'DELETE':
-            default:
-            {
-                return [];
-            }
-        }
-    }
-
-    public function messages()
-    {
+        // 提交的时候 评论至少两个字符的长度
         return [
-            // Validation messages
+            'content' => 'required|min:2',
         ];
     }
+
 }

@@ -37,4 +37,10 @@ class TopicObserver
             dispatch(new TranslateSlug($topic));
         }
     }
+
+    // 话题被删除的时候 评论全部清空
+    public function deleted(Topic $topic)
+    {
+        \DB::table('replies')->where('topic_id', $topic->id)->delete();
+    }
 }

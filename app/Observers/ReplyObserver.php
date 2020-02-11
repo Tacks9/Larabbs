@@ -19,8 +19,7 @@ class ReplyObserver
         // $reply->topic->increment('reply_count', 1);
 
         // 创建成功后计算本话题下评论总数，然后在对其 reply_count 字段进行赋值
-        $reply->topic->reply_count = $reply->topic->replies->count();
-        $reply->topic->save();
+        $reply->topic->updateReplyCount();
 
         // 通知话题作者有新的评论
         $reply->topic->user->notify(new TopicReplied($reply));
@@ -35,5 +34,12 @@ class ReplyObserver
     public function updating(Reply $reply)
     {
         //
+    }
+
+
+    public function deleted(Reply $reply)
+    {
+        // 当回复被删除后，评论数已变更，话题的 reply_count 也需要更新
+        $reply->topic->updateReplyCount();
     }
 }

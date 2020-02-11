@@ -40,6 +40,11 @@
   <!-- Scripts -->
   <script src="{{ mix('js/app.js') }}"></script>
 
+    @if (app()->isLocal())
+      @include('sudosu::user-selector')
+    @endif
+
+  <!-- Scripts -->
   <!-- 加载 新建帖子的时候需要的编辑器 -->
   @yield('scripts')
 </body>

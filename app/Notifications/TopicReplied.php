@@ -3,13 +3,14 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+// 通知类接口
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 use App\Models\Reply;
 
-class TopicReplied extends Notification
+class TopicReplied extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -36,10 +37,10 @@ class TopicReplied extends Notification
     public function via($notifiable)
     {
          // 开启通知的频道
-        return ['database'];
+        return ['database', 'mail'];
     }
 
-
+    // 数据库方式
     public function toDatabase($notifiable)
     {
         $topic = $this->reply->topic;
@@ -56,5 +57,15 @@ class TopicReplied extends Notification
             'topic_id' => $topic->id,
             'topic_title' => $topic->title,
         ];
+    }
+
+    // 邮件方式
+    public function toMail($notifiable)
+    {
+        $url = $this->reply->topic->link(['#reply' . $this->reply->id]);
+
+        return (new MailMessage)
+                    ->line('你的话题有新回复！')
+                    ->action('查看回复', $url);
     }
 }

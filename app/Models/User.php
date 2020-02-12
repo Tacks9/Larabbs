@@ -26,6 +26,9 @@ class User extends Authenticatable implements MustVerifyEmailContract
     // 缓存活跃用户
     use Traits\ActiveUserHelper;
 
+    // 最近登录用户
+    use Traits\LastActivedAtHelper;
+
     // 信息通知
     public function notify($instance)
     {

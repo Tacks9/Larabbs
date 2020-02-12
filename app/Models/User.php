@@ -23,6 +23,9 @@ class User extends Authenticatable implements MustVerifyEmailContract
     // 获取到扩展包提供的所有权限和角色的操作方法
     use HasRoles;
 
+    // 缓存活跃用户
+    use Traits\ActiveUserHelper;
+
     // 信息通知
     public function notify($instance)
     {

@@ -71,7 +71,7 @@ return array(
      * 		'Analytics' => array('E-Commerce' => 'page.ecommerce.analytics'),
      *	)
      */
-     'menu' => [
+    'menu' => [
         '用户与权限' => [
             'users',
             'roles',
@@ -81,6 +81,9 @@ return array(
             'categories',
             'topics',
             'replies',
+        ],
+        '站点管理' => [
+            'settings.site',
         ],
     ],
 

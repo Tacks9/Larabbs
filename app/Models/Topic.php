@@ -39,10 +39,15 @@ class Topic extends Model
     {
         // 不同的排序，使用不同的数据读取逻辑
         switch ($order) {
+            // 最近发布
             case 'recent':
                 $query->recent();
                 break;
-
+            // 零评论
+            case 'zero':
+                $query->zero();
+                break;
+            // 默认最近回复
             default:
                 $query->recentReplied();
                 break;
@@ -63,6 +68,14 @@ class Topic extends Model
         // 按照创建时间排序
         return $query->orderBy('created_at', 'desc');
     }
+
+    // 按照零评论
+    public function scopeZero($query)
+    {
+        // 按照创建时间排序
+        return $query->where('reply_count', '0')->orderBy('created_at', 'asc');
+    }
+
 
     // 链接生成方式
     public function link($params = [])

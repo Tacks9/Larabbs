@@ -17,13 +17,18 @@
       <div class="card-header bg-transparent">
         <ul class="nav nav-pills">
           <li class="nav-item">
-            <a class="nav-link {{ active_class( ! if_query('order', 'recent')) }}" href="{{ Request::url() }}?order=default">
+            <a class="nav-link {{ active_class(if_query('order', 'default') || if_query('order', '')) }}" href="{{ Request::url() }}?order=default">
               最后回复
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link {{ active_class(if_query('order', 'recent')) }}" href="{{ Request::url() }}?order=recent">
               最新发布
+            </a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link {{ active_class(if_query('order', 'zero')) }}" href="{{ Request::url() }}?order=zero">
+              零评论
             </a>
           </li>
         </ul>

@@ -80,6 +80,7 @@ class Topic extends Model
     // 链接生成方式
     public function link($params = [])
     {
+        // 参数作用 可以在视图中直达评论的锚点 $reply->topic->link(['#reply' . $reply->id])
         return route('topics.show', array_merge([$this->id, $this->slug], $params));
     }
 

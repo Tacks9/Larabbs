@@ -43,6 +43,11 @@ class TopicsController extends Controller
             // 301 永久重定向到正确的 URL 上
             return redirect($topic->link(), 301);
         }
+        // 文章阅读数+1
+        // $request->server()可以获取到所有 $_SERVER 信息
+        if(!isset($request->server()['HTTP_CACHE_CONTROL'])) {
+            $topic->increment('view_count');
+        }
 
         return view('topics.show', compact('topic')); // 『隐性路由模型绑定』 自动解析为 ID的帖子对象
     }

@@ -35,8 +35,13 @@
           <div class="article-meta text-center text-secondary">
             {{ $topic->created_at->diffForHumans() }}
             ⋅
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            {{ $topic->view_count }}
+            ⋅
             <i class="far fa-comment"></i>
             {{ $topic->reply_count }}
+
+
           </div>
 
           <div class="topic-body mt-4 mb-4">

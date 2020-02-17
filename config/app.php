@@ -20,8 +20,8 @@ return [
     'locale' => 'zh-CN',
     // 应用翻译服务 回退翻译 如果当前区域翻译不可用， 则设置为这个，其名称对应 resources/lang/下面目录
     'fallback_locale' => 'en',
-    // 如果数据库填充的时候 获取本地化的电话号码、街道地址信息
-    'faker_locale' => 'en_US',
+    // 如果数据库填充的时候 获取本地化的电话号码、街道地址信息、text() 默认en_US  支持中文zh_CN
+    'faker_locale' => 'zh_CN',
     // 加密密钥 Illuminate encrypter服务使用  初始化设置32个随机字符串
     'key' => env('APP_KEY'),
     // 默认使用AES-128-CBC对称加密算法 进行加密

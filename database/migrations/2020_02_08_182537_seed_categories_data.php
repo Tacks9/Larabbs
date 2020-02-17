@@ -15,20 +15,24 @@ class SeedCategoriesData extends Migration
     {
         $categories = [
             [
-                'name'        => '分享',
-                'description' => '分享创造，分享发现',
+                'name'        => '编程技术',
+                'description' => '包含C、C++、C#、Java、Python、JS、PHP、SQL、GO等各种编程技术！',
             ],
             [
-                'name'        => '教程',
-                'description' => '开发技巧、推荐扩展包等',
+                'name'        => '笔经面经',
+                'description' => '普通实习、应届生春招秋招、毕业生社招等一些经验分享！',
             ],
             [
-                'name'        => '问答',
-                'description' => '请保持友善，互帮互助',
+                'name'        => '资源分享',
+                'description' => '学习笔记、有趣开源、软件安利等！',
             ],
             [
-                'name'        => '公告',
-                'description' => '站点公告',
+                'name'        => '职业发展',
+                'description' => '学习路线、认真规划！',
+            ],
+            [
+                'name'        => '摸鱼时刻',
+                'description' => '适当放松、找寻快乐！',
             ],
         ];
         // 填充数据

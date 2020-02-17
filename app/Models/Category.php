@@ -12,4 +12,14 @@ class Category extends Model
     protected $fillable = [
         'name', 'description',
     ];
+
+    // 分类列表
+    public function categories()
+    {
+        if (is_null(cache('categories'))) {
+            // 缓存 分类列表categories数据  修改后，会自动清除缓存
+            cache(['categories' => $this->all()], 60*24);
+        }
+        return cache('categories');
+    }
 }

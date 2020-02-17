@@ -23,8 +23,8 @@
 <body>
   <!-- route_class() 辅助函数  针对某个页面做页面样式定制 -->
   <div id="app" class="{{ route_class() }}-page">
-    <!-- 加载顶部导航区块的子模板。 -->
-    @include('layouts._header')
+    <!-- 加载顶部导航区块的子模板。 文章分类的自动缓存加载 -->
+   @include('layouts._header', ['categories' => app(\App\Models\Category::class)->categories()])
 
     <div class="container">
 

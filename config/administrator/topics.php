@@ -41,6 +41,12 @@ return [
         'view_count' => [
             'title'    => '阅读数',
         ],
+        'status' => [
+            'title'    => '状态',
+        ],
+        'top' => [
+            'title'    => '置顶',
+        ],
         'operation' => [
             'title'  => '管理',
             'sortable' => false,
@@ -82,6 +88,12 @@ return [
         'view_count' => [
             'title'    => '阅读数',
         ],
+        'status' => [
+            'title'    => '状态',
+        ],
+        'top' => [
+            'title'    => '置顶',
+        ],
     ],
     'filters' => [
         'id' => [
@@ -101,6 +113,12 @@ return [
             'name_field'         => 'name',
             'search_fields'      => array("CONCAT(id, ' ', name)"),
             'options_sort_field' => 'id',
+        ],
+        'status' => [
+            'title'    => '状态',
+        ],
+        'top' => [
+            'title'    => '置顶',
         ],
     ],
     'rules'   => [

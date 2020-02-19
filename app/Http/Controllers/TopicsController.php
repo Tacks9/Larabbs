@@ -25,7 +25,7 @@ class TopicsController extends Controller
 		// $topics = Topic::paginate();
         // $topics = Topic::with('user', 'category')->paginate(30); // 预加载 缓存 关联关系
         // $request->order 获取url后面order的参数
-        $topics = $topic->withOrder($request->order)
+        $topics = $topic->withOrder($request->order)->where('status',1)
                         ->with('user', 'category')
                         ->paginate(20);
 
@@ -37,6 +37,17 @@ class TopicsController extends Controller
 
     public function show(Request $request, Topic $topic)
     {
+
+        $is_status = 1; // 默认是可以看到的
+        // 当前帖子被撤销
+        if($topic->status != 1 ) {
+            // 并且当前用户 发帖人 或者是管理员 可以查看
+            if(Auth::id() == $topic->user_id || config('administrator.permission')() ) {
+                $is_status = 0;
+            }else{
+                return redirect()->route('topics.index')->with('warning','访问帖子出错！');
+            }
+        }
         // URL 矫正
         // 如果话题的 Slug 字段不为空 并且话题 Slug 不等于请求的路由参数 Slug
         if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
@@ -49,7 +60,7 @@ class TopicsController extends Controller
             $topic->increment('view_count');
         }
 
-        return view('topics.show', compact('topic')); // 『隐性路由模型绑定』 自动解析为 ID的帖子对象
+        return view('topics.show', compact('topic','is_status')); // 『隐性路由模型绑定』 自动解析为 ID的帖子对象
     }
 
 	public function create(Topic $topic,Category $category)

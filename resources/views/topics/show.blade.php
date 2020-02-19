@@ -26,6 +26,9 @@
     </div>
 
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">
+        @if ( $is_status == 0)
+            <div class="alert alert-warning" role="alert">正在审核中，通过后其他人方可看到，并进行回复~</div>
+        @endif
       <div class="card">
         <div class="card-body">
           <h1 class="text-center mt-3 mb-3">
@@ -63,6 +66,7 @@
                   <i class="far fa-trash-alt"></i> 删除
                 </button>
               </form>
+
             </div>
           @endcan
 
@@ -70,12 +74,17 @@
       </div>
 
       {{-- 用户回复列表 --}}
+
+      @if ( $is_status == 0)
+        <!-- 正在审核 看不到回复 -->
+      @else
       <div class="card topic-reply mt-4">
           <div class="card-body">
               @includeWhen(Auth::check(), 'topics._reply_box', ['topic' => $topic])
               @include('topics._reply_list', ['replies' => $topic->replies()->with('user')->get()])
           </div>
       </div>
+      @endif
 
     </div>
   </div>

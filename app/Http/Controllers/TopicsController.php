@@ -52,9 +52,9 @@ class TopicsController extends Controller
         return view('topics.show', compact('topic')); // 『隐性路由模型绑定』 自动解析为 ID的帖子对象
     }
 
-	public function create(Topic $topic)
+	public function create(Topic $topic,Category $category)
 	{
-        $categories = Category::all();  // 显示分类
+        $categories = $category->getSwitchCategory();  // 显示分类
 		return view('topics.create_and_edit', compact('topic', 'categories'));
 	}
 
@@ -72,13 +72,14 @@ class TopicsController extends Controller
         return redirect()->to($topic->link())->with('success', '成功创建话题！');
 	}
 
-	public function edit(Topic $topic)
+	public function edit(Topic $topic,Category $category)
 	{
         // $this->authorize('update', $topic);
 	   //  return view('topics.create_and_edit', compact('topic'));
         $this->authorize('update', $topic); // 授权策略的调用
 
-        $categories = Category::all();      // 传入分类
+        // $categories = Category::all();      // 传入分类
+        $categories = $category->getSwitchCategory();  // 显示分类
         return view('topics.create_and_edit', compact('topic', 'categories'));
 	}
 

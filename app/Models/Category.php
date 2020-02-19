@@ -22,4 +22,10 @@ class Category extends Model
         }
         return cache('categories');
     }
+
+    // 用户发帖时选择的分类
+    public function getSwitchCategory()
+    {
+        return $this->where('name', '!=', '站内公告') ->get();
+    }
 }

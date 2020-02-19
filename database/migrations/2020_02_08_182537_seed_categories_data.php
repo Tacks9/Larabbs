@@ -34,6 +34,10 @@ class SeedCategoriesData extends Migration
                 'name'        => '摸鱼时刻',
                 'description' => '适当放松、找寻快乐！',
             ],
+            [
+                'name'        => '站内公告',
+                'description' => '一些站内的相关通知！',
+            ],
         ];
         // 填充数据
         DB::table('categories')->insert($categories);

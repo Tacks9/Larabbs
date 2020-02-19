@@ -28,6 +28,9 @@ return [
             'title'    => '描述',
             'sortable' => false,
         ],
+        'post_count' => [
+            'title'    => '帖子数量',
+        ],
         'operation' => [
             'title'  => '管理',
             'sortable' => false,

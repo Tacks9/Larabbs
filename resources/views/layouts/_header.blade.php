@@ -19,9 +19,9 @@
             <a class="nav-link" href="{{ route('categories.show', $category->id) }}">{{  $category->name }}</a>
         </li>
 @endforeach
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link" href="{{ route('categories.show', 1) }}">站内公告</a>
-    </li>
+    </li> -->
     <li class="nav-item">
         <form class="form-inline" action="{{ route('topics.search') }}" method="get">
             <div class="form-group header-search">

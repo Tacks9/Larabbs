@@ -51,6 +51,7 @@ class TopicsController extends Controller
         // URL 矫正
         // 如果话题的 Slug 字段不为空 并且话题 Slug 不等于请求的路由参数 Slug
         if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
+            session()->reflash(); // 通过reflash使得重定向后的页面能收到这个值
             // 301 永久重定向到正确的 URL 上
             return redirect($topic->link(), 301);
         }

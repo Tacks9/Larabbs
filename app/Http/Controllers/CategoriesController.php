@@ -17,7 +17,7 @@ class CategoriesController extends Controller
         // $topics = Topic::where('category_id', $category->id)->paginate(20);
 
         $topics = $topic->withOrder($request->order)
-                        ->where('category_id', $category->id)
+                        ->where('category_id', $category->id)->where('status',1)
                         ->with('user', 'category')
                         ->paginate(20);
         // 活跃用户列表

@@ -17,6 +17,9 @@
       <div class="card-header bg-transparent">
         <ul class="nav nav-pills">
           <li class="nav-item">
+              <i class="fa fa-gg index-icon-topic"  aria-hidden="true"></i>
+          </li>
+          <li class="nav-item">
             <a class="nav-link {{ active_class(if_query('order', 'default') || if_query('order', '')) }}" href="{{ Request::url() }}?order=default">
               最后回复
             </a>

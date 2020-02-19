@@ -17299,7 +17299,7 @@ body {
   border-color: #e7e7e7;
   background-color: #fff;
   box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
-  border-top: 4px solid #00b5ad;
+  border-top: 4px solid #5a73cc;
   border-bottom: 1px solid #e8e8e8;
   margin-bottom: 40px;
   margin-top: 0px;
@@ -17896,5 +17896,35 @@ body {
   background-color: #d15b47 !important;
 }
 
-/* 搜索框 */
+/* 克兰茵蓝 话题图标 */
+
+.index-icon-topic {
+  color: #5a73cc;
+  position: relative;
+  right: 10px;
+  font-size: 32px !important;
+}
+
+/* 栏目，分页，选中样式 */
+
+.nav-pills .nav-link.active,
+.page-item.active .page-link {
+  background-color: #5a73cc !important;
+}
+
+/* 新增帖子 */
+
+.btn-blue {
+  color: #fff;
+  background-color: #5a73cc;
+  border-color: #5a73cc;
+}
+
+/* 头部搜索 */
+
+.header-search {
+  position: relative;
+  left: 25px;
+  border-radius: 5px;
+}
 

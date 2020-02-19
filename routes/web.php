@@ -70,3 +70,7 @@ Route::resource('notifications', 'NotificationsController', ['only' => ['index']
 
 // 无权限提醒页面
 Route::get('permission-denied', 'PagesController@permissionDenied')->name('permission-denied');
+
+
+// 搜索
+Route::get('search', 'TopicsController@search')->name('topics.search');

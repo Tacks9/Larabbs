@@ -20,8 +20,20 @@
         </li>
 @endforeach
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('categories.show', 1) }}">站内公告</a></li>
-
+      <a class="nav-link" href="{{ route('categories.show', 1) }}">站内公告</a>
+    </li>
+    <li class="nav-item">
+        <form class="form-inline" action="{{ route('topics.search') }}" method="get">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input name="keyword" id="keyword" type="text" class="form-control border-primary rounded-search" placeholder="搜索..."/>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-outline-primary border-left-0"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+        </form>
+    </li>
  <!--        <li class="nav-item {{ category_nav_active(2) }}"><a class="nav-link" href="{{ route('categories.show', 2) }}">教程</a></li>
         <li class="nav-item {{ category_nav_active(3) }}"><a class="nav-link" href="{{ route('categories.show', 3) }}">问答</a></li>
         <li class="nav-item {{ category_nav_active(4) }}"><a class="nav-link" href="{{ route('categories.show', 4) }}">公告</a></li> -->

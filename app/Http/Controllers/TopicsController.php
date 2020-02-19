@@ -123,4 +123,22 @@ class TopicsController extends Controller
         }
         return $data;
     }
+
+    // 搜索
+    public function search(Request $request,Topic $topic, User $user, Link $link)
+    {
+
+        $keyword=$request->input('keyword');
+
+        $count  =$topic->where('title',$keyword)->orWhere('title','like','%'.$keyword.'%')->with('user', 'category')->count();
+        $topics = $topic->where('title',$keyword)->orWhere('title','like','%'.$keyword.'%')->with('user', 'category')->paginate(20);
+
+
+        $active_users = $user->getActiveUsers();
+        $links = $link->getAllCached();
+
+        return view('topics.search', compact('topics','keyword','count', 'active_users', 'links'));
+    }
+
+
 }

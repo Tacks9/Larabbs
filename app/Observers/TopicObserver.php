@@ -36,6 +36,10 @@ class TopicObserver
             // 推送任务到队列
             dispatch(new TranslateSlug($topic));
         }
+
+        // 计算每个分类下的 帖子数量
+        $num = $topic->where('category_id', $topic->category_id)->count();
+        \DB::table('categories')->where('id', $topic->category_id)->update(['post_count' => $num]);
     }
 
     // 话题被删除的时候 评论全部清空

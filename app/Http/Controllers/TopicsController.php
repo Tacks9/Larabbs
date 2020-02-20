@@ -16,8 +16,8 @@ class TopicsController extends Controller
 {
     public function __construct()
     {
-        // 中间件 限制未登录用户发帖
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        // 中间件 限制未登录用户发帖 搜索
+        $this->middleware('auth', ['except' => ['index', 'show', 'search']]);
     }
 
 	public function index(Request $request, Topic $topic, User $user, Link $link)

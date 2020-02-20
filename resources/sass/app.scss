@@ -175,6 +175,9 @@ body {
 
 
 /* 克兰茵蓝 话题图标 */
+.index-icon-li {
+  width:30px;
+}
 .index-icon-topic {
   color: #5a73cc;
   position: relative;
@@ -186,6 +189,12 @@ body {
 .nav-pills .nav-link.active , .page-item.active .page-link{
     background-color: #5a73cc !important;
 }
+
+/* 帖子列表 阅读数评论数 样式 */
+.float-right-space {
+  margin-left: 5px;
+}
+
 
 /* 新增帖子 */
 .btn-blue {
@@ -201,3 +210,4 @@ body {
   left: 25px;
   border-radius: 5px;
 }
+

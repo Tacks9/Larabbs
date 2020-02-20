@@ -41,7 +41,7 @@
             <i class="fa fa-eye" aria-hidden="true"></i>
             {{ $topic->view_count }}
             ⋅
-            <i class="far fa-comment"></i>
+             <i class="fa fa-comments-o" aria-hidden="true"></i>
             {{ $topic->reply_count }}
 
 

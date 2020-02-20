@@ -11,6 +11,7 @@ use Auth;
 use App\Handlers\ImageUploadHandler;
 use App\Models\User;
 use App\Models\Link;
+use App\Models\Carousel;
 
 class TopicsController extends Controller
 {
@@ -20,7 +21,7 @@ class TopicsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show', 'search']]);
     }
 
-	public function index(Request $request, Topic $topic, User $user, Link $link)
+	public function index(Request $request, Topic $topic, User $user, Link $link, Carousel $carousel)
 	{
 		// $topics = Topic::paginate();
         // $topics = Topic::with('user', 'category')->paginate(30); // 预加载 缓存 关联关系
@@ -31,8 +32,10 @@ class TopicsController extends Controller
 
         $active_users = $user->getActiveUsers();
         $links = $link->getAllCached();
+        $carousels = $carousel->getAllCached();
 
-        return view('topics.index', compact('topics', 'active_users', 'links'));
+        // 传参变量到模板中
+        return view('topics.index', compact('topics', 'category', 'active_users', 'links','carousels'));
 	}
 
     public function show(Request $request, Topic $topic)
@@ -138,7 +141,7 @@ class TopicsController extends Controller
     }
 
     // 搜索
-    public function search(Request $request,Topic $topic, User $user, Link $link)
+    public function search(Request $request,Topic $topic, User $user, Link $link, Carousel $carousel)
     {
 
         $keyword=$request->input('keyword');
@@ -149,8 +152,9 @@ class TopicsController extends Controller
 
         $active_users = $user->getActiveUsers();
         $links = $link->getAllCached();
+        $carousels = $carousel->getAllCached();
 
-        return view('topics.search', compact('topics','keyword','count', 'active_users', 'links'));
+        return view('topics.search', compact('topics','keyword','count', 'active_users', 'links','carousels'));
     }
 
 

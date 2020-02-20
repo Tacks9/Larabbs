@@ -14,9 +14,9 @@ class AddStatusAndTopToTopicsTable extends Migration
     public function up()
     {
         Schema::table('topics', function (Blueprint $table) {
-            // 新增两个字段  状态 1正常/0撤销  置顶
-            $table->mediumInteger('status')->default(0)->comment('状态 1通过/0审核中');
-            $table->mediumInteger('top')->default(0)->comment('置顶1/0');
+            // 新增两个字段  状态 置顶   after将此字段放置在view_count"之后" (MySQL)
+            $table->mediumInteger('status')->after('view_count')->default(0)->comment('状态 1通过/0审核中');
+            $table->mediumInteger('top')->after('view_count')->default(0)->comment('置顶1/0');
         });
     }
 
@@ -28,8 +28,8 @@ class AddStatusAndTopToTopicsTable extends Migration
     public function down()
     {
         Schema::table('topics', function (Blueprint $table) {
-            $table->dropColumn('avatar');
-            $table->dropColumn('introduction');
+            $table->dropColumn('status');
+            $table->dropColumn('top');
         });
     }
 }

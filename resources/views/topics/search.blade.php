@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="row">
-        <div class="col-lg-9 col-md-9 ">
+        <div class="col-lg-9 col-md-9 topic-list topics-search-page">
             <div class="card">
                 <div class="card-header d-flex justify-content-between text-muted">
                     <span class="">搜索关键字为: {{ $keyword }} </span>

@@ -86,6 +86,24 @@ class User extends Authenticatable implements MustVerifyEmailContract
         return $this->hasMany(Reply::class);
     }
 
+    // 【多对多】 一个用户可以关注多个人， 同样关注的人拥有多个粉丝
+    // 粉丝关系列表
+    public function followers()
+    {
+        // Laravel 中会默认将两个关联模型的名称进行合并，并按照字母排序
+        // 自定义生成的名称，把关联表名改为 followers
+        // 传递额外参数至 belongsToMany 方法来自定义数据表里的字段名称
+        // 第三个参数 user_id 是定义在关联中的模型外键名
+        // 第四个参数 follower_id 则是要合并的模型外键名
+        return $this->belongsToMany(User::Class,'followers', 'user_id', 'follower_id');
+    }
+
+    // 用户关注人列表
+    public function followings()
+    {
+        return $this->belongsToMany(User::Class, 'followers', 'follower_id', 'user_id');
+    }
+
     // 当前用户是否等于编辑的id
     public function isAuthorOf($model)
     {
@@ -125,5 +143,35 @@ class User extends Authenticatable implements MustVerifyEmailContract
          }
 
          $this->attributes['avatar'] = $path;
+    }
+
+
+    // 关注用户
+    public function follower($user_ids)
+    {
+        if( !is_array($user_ids)) {
+            $user_ids = compact('user_ids'); // 转成数组
+        }
+        // 关注一个新用户的时候，仍然要保持之前已关注用户的关注关系
+        // 第二个参数 false 是否要移除其它不包含在关联的 id 数组
+        // 这样下次 id 为同样的数据并不会被重复创建
+        $this->followings()->sync($user_ids, false);
+    }
+
+    // 取消关注
+    public function unfollow($user_ids)
+    {
+        if ( ! is_array($user_ids)) {
+            $user_ids = compact('user_ids'); // 转成数组
+        }
+        // detach 来对用户进行取消关注的操作
+        $this->followings()->detach($user_ids);
+    }
+
+    // 判断当前登录的用户 A 是否关注了用户 B
+    public function isFollowing($user_id)
+    {
+        // 判断用户 B 是否包含在用户 A 的关注人列表上即可
+       return $this->followings->contains($user_id);
     }
 }

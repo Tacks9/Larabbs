@@ -147,7 +147,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
 
     // 关注用户
-    public function follower($user_ids)
+    public function follow($user_ids)
     {
         if( !is_array($user_ids)) {
             $user_ids = compact('user_ids'); // 转成数组

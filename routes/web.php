@@ -74,3 +74,10 @@ Route::get('permission-denied', 'PagesController@permissionDenied')->name('permi
 
 // 搜索
 Route::get('search', 'TopicsController@search')->name('topics.search');
+
+// 关注功能
+
+// 显示用户的关注人列表
+Route::get('/users/{user}/followings', 'UsersController@followings')->name('users.followings');
+// 显示用户的粉丝列表
+Route::get('/users/{user}/followers', 'UsersController@followers')->name('users.followers');

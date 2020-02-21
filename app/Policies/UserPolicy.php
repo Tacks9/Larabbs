@@ -24,4 +24,12 @@ class UserPolicy
     {
         return $currentUser->id === $user->id;
     }
+
+    // 用户关注策略
+    public function follow(User $currentUser, User $user)
+    {
+        // 不能关注自己
+        return $currentUser->id !== $user->id;
+    }
+
 }

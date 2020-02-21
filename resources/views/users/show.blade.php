@@ -9,11 +9,14 @@
   <div class="col-lg-3 col-md-3 hidden-sm hidden-xs user-info">
     <div class="card ">
       <img class="card-img-top" src="{{ $user->avatar }}" alt="{{ $user->name }}">
-      <div class="card-body ">
-        <hr>
-          <div class="clearfix text-center"  >
+      <!-- 关注按钮 -->
+      @if (Auth::check())
+        @include('users._follow_form')
+      @endif
+      <div class="acard-body mt-2">
+          <div class="clearfix text-center border-bottom">
             <a href="{{ route('users.followings', $user->id) }}">
-            <div class="float-left w-25 ml-2" >
+            <div class="float-left w-25 ml-3" >
                <span class="font-weight-bold text-muted">
                   关注
               </span>
@@ -35,9 +38,8 @@
               <p class="text-dark">{{ $user->topics()->count() }}</p>
             </div>
           </div>
-        <hr>
 
-        <div class="text-secondary">
+        <div class="text-secondary p-3">
             <h5>
               <i class="fa fa-home" style="width: 20px;" aria-hidden="true"></i>
               <strong>{{ $user->name }}</strong>
@@ -51,13 +53,12 @@
               <br>
               <i class="fa fa-fire" style="width: 20px;" aria-hidden="true"></i>
               最近活跃：{{ $user->last_actived_at->diffForHumans() }}
-        </div>
-
-        <br>
+              <br>
               <i class="fa fa-angellist" style="width: 20px; " aria-hidden="true"></i>
                 {{ $user->introduction }}
-      </div>
+        </div>
 
+      </div>
     </div>
   </div>
   <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">

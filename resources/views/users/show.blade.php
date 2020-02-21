@@ -26,7 +26,7 @@
           <a href="{{ route('users.followers', $user->id) }}">
             <div class="float-left w-25 ml-2" >
                <span class="font-weight-bold text-muted">
-                  粉丝
+                  关注
               </span>
               <p class="text-dark">{{ count($user->followers) }}</p>
             </div>

@@ -174,4 +174,14 @@ class User extends Authenticatable implements MustVerifyEmailContract
         // 判断用户 B 是否包含在用户 A 的关注人列表上即可
        return $this->followings->contains($user_id);
     }
+
+     // 关注流
+    public function feed()
+    {
+        $user_ids = $this->followings->pluck('id')->toArray();
+        array_push($user_ids, $this->id);
+        return Topic::whereIn('user_id', $user_ids)
+                              ->with('user', 'category')
+                              ->orderBy('created_at', 'desc');
+    }
 }

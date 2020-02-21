@@ -29,7 +29,6 @@ class TopicsController extends Controller
         $topics = $topic->withOrder($request->order)->where('status',1)
                         ->with('user', 'category')
                         ->paginate(20);
-
         $active_users = $user->getActiveUsers();
         $links = $link->getAllCached();
         $carousels = $carousel->getAllCached();
@@ -157,5 +156,16 @@ class TopicsController extends Controller
         return view('topics.search', compact('topics','keyword','count', 'active_users', 'links','carousels'));
     }
 
+    // 用户feed流
+    public function feeds(Request $request,Topic $topic, User $user, Link $link, Carousel $carousel)
+    {
+        $user = Auth::user();
+        $topics = $user->feed()->orderBy('updated_at','desc')->paginate(10);
+        $count  = $user->feed()->count();
 
+        $active_users = $user->getActiveUsers();
+        $links = $link->getAllCached();
+        $carousels = $carousel->getAllCached();
+         return view('topics.feed', compact('topics', 'category', 'active_users', 'links','carousels','count'));
+    }
 }

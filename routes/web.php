@@ -86,3 +86,6 @@ Route::get('/users/{user}/followers', 'UsersController@followers')->name('users.
 Route::post('/users/followers/{user}', 'FollowersController@store')->name('followers.store');
 // 取消关注
 Route::delete('/users/followers/{user}', 'FollowersController@destroy')->name('followers.destroy');
+
+// 关注人feeds流
+Route::get('/feeds', 'TopicsController@feeds')->name('topics.feeds');

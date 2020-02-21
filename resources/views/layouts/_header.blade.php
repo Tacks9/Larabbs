@@ -11,7 +11,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Left Side Of Navbar -->
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item {{ active_class(if_route('topics.index')) }}"><a class="nav-link" href="{{ route('topics.index') }}">话题</a></li>
+        <li class="nav-item {{ active_class(if_route('topics.index')) }}"><a class="nav-link" href="{{ route('topics.index') }}">首页</a></li>
+        <li class="nav-item {{ active_class(if_route('topics.feeds')) }}"><a class="nav-link" href="{{ route('topics.feeds') }}">动态</a></li>
 @foreach ($categories as $category)
 
         <li class="{{ active_class((if_route('categories.show') && if_route_param('category', $category->id))) }} nav-item">

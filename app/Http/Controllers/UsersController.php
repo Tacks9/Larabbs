@@ -19,7 +19,9 @@ class UsersController extends Controller
     // 个人页面
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        $usersFollowings = $user->followings()->paginate(8);
+        $usersFollowers = $user->followers()->paginate(8);
+        return view('users.show', compact('user','usersFollowings','usersFollowers'));
     }
 
     // 编辑页面
@@ -47,7 +49,7 @@ class UsersController extends Controller
         return redirect()->route('users.show',$user->id)->with('success','个人资料更新成功');
     }
 
-
+/*
     // 关注列表
     public function followings(User $user)
     {
@@ -63,4 +65,5 @@ class UsersController extends Controller
         $title = $user->name . '的粉丝';
         return view('users.show_follow', compact('user','users', 'title'));
     }
+*/
 }

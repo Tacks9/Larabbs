@@ -18,6 +18,10 @@
             <div align="center">
               <a href="{{ route('users.show', $topic->user->id) }}">
                 <img class="thumbnail img-fluid" src="{{ $topic->user->avatar }}" width="300px" height="300px">
+                  <!-- 关注按钮 -->
+                  @if (Auth::check())
+                    @include('users._follow_form',['user' => $topic->user])
+                  @endif
               </a>
             </div>
           </div>

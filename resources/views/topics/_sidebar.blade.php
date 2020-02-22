@@ -1,11 +1,11 @@
-<!-- <div class="card ">
+<div class="card ">
   <div class="card-body">
     <a href="{{ route('topics.create') }}" class="btn btn-blue btn-block" aria-label="Left Align">
       <i class="fas fa-pencil-alt mr-2"></i>  新建帖子
     </a>
   </div>
 </div>
- -->
+
 
 
 @if (count($active_users))
@@ -54,12 +54,18 @@
                               <div class="carousel-item active ">
                                   <a href="{{ $carousel->link}}" target="_blank">
                                          <img src="{{ $carousel->image }}">
+                                          <div class="carousel-caption">
+                                            <h5> <kbd>{{ $carousel->title }} </kbd></h5>
+                                          </div>
                                   </a>
                               </div>
                              @else
                              <div class="carousel-item">
                                   <a href="{{ $carousel->link}}"  target="_blank" >
                                          <img src="{{ $carousel->image }}">
+                                         <div class="carousel-caption">
+                                            <h5> <kbd>{{ $carousel->title }} </kbd></h5>
+                                          </div>
                                   </a>
                               </div>
                         @endif

@@ -21,7 +21,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link {{ active_class(if_query('order', 'default') || if_query('order', '')) }}" href="{{ Request::url() }}?order=default">
-              最后回复
+              最新回复
             </a>
           </li>
           <li class="nav-item">
@@ -29,7 +29,12 @@
               最新发布
             </a>
           </li>
-           <li class="nav-item">
+          <li class="nav-item">
+            <a class="nav-link {{ active_class(if_query('order', 'hot')) }}" href="{{ Request::url() }}?order=hot">
+              热榜
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link {{ active_class(if_query('order', 'zero')) }}" href="{{ Request::url() }}?order=zero">
               零评论
             </a>

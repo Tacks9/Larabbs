@@ -11,6 +11,9 @@
         <div class="media-body">
 
           <div class="media-heading mt-0 mb-1">
+            @if ($topic->top == 1)
+            <span class="text-white p-1 mr-1" style="border-radius: 3px;background-color: #5a73cc;">置顶</span>
+            @endif
              <a href="{{ $topic->link() }}" title="{{ $topic->title }}">
                 {{ $topic->title }}
              </a>

@@ -9,7 +9,7 @@
 
   <!-- CSRF Token csrf-token 标签是为了方便前端的 JavaScript 脚本获取 CSRF 令牌。 -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>@yield('title', 'LaraBBS') - {{ setting('site_name', 'Laravel 进阶教程') }}</title>
+  <title>@yield('title', '首页') - {{ setting('site_name', '南工编程论坛') }}</title>
   <meta name="description" content="@yield('description', setting('seo_description', 'LaraBBS 爱好者社区。'))" />
   <meta name="keyword" content="@yield('keyword', setting('seo_keyword', 'LaraBBS,社区,论坛,开发者论坛'))" />
 

@@ -1,4 +1,7 @@
 @extends('layouts.app')
+
+@section('title', '动态')
+
 @section('content')
     <div class="row">
         <div class="col-lg-9 col-md-9 topic-list">

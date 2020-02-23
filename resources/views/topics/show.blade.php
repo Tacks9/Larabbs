@@ -8,25 +8,8 @@
   <div class="row">
 
     <div class="col-lg-3 col-md-3 hidden-sm hidden-xs author-info">
-      <div class="card ">
-        <div class="card-body">
-          <div class="text-center">
-            作者：{{ $topic->user->name }}
-          </div>
-          <hr>
-          <div class="media">
-            <div align="center">
-              <a href="{{ route('users.show', $topic->user->id) }}">
-                <img class="thumbnail img-fluid" src="{{ $topic->user->avatar }}" width="300px" height="300px">
-                  <!-- 关注按钮 -->
-                  @if (Auth::check())
-                    @include('users._follow_form',['user' => $topic->user])
-                  @endif
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+           <!-- 左侧个人信息 -->
+          @include('users._user_info',['user'=>$topic->user])
     </div>
 
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">

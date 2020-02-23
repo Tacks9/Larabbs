@@ -17950,3 +17950,13 @@ body {
   border-radius: 5px;
 }
 
+/* 个人页面 左侧菜单*/
+
+.list-group-item.active {
+  background-color: #5a73cc !important;
+}
+
+.list-group a {
+  text-decoration: none;
+}
+

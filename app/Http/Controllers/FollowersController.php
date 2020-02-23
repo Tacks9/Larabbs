@@ -23,7 +23,8 @@ class FollowersController extends Controller
             Auth::user()->follow($user->id);
         }
 
-        return redirect()->route('users.show', $user->id);
+        // return redirect()->route('users.show', $user->id);
+        return back()->with('user', $user->id); // 重定向上一页 并且携带数据
     }
 
     // 取消关注
@@ -34,7 +35,7 @@ class FollowersController extends Controller
         if (Auth::user()->isFollowing($user->id)) {
             Auth::user()->unfollow($user->id);
         }
-
-        return redirect()->route('users.show', $user->id);
+        // return redirect()->route('users.show', $user->id);
+        return back()->with('user', $user->id);
     }
 }

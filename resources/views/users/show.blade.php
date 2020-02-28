@@ -10,26 +10,8 @@
       <!-- 左侧个人信息 -->
       @include('users._user_info')
       <hr>
-      <div class="list-group">
-        <a href="{{ route('users.show', $user->id) }}"
-           class="list-group-item {{ active_class(if_query('tab', null)) }}">
-          @if( Auth::user()->id == $user->id)
-                我的帖子
-            @else
-                Ta 的帖子
-          @endif
-       </a>
-        <a href="{{ route('users.show', [$user->id, 'tab' => 'replies']) }}"
-           class="list-group-item  {{ active_class(if_query('tab', 'replies')) }} ">
-         @if( Auth::user()->id == $user->id)
-                我的回复
-            @else
-                Ta 的回复
-          @endif
-       </a>
-        <a href="#" class="list-group-item">Vestibulum at eros</a>
-    </div>
-
+      <!-- 左侧导航 -->
+      @include('users._left_nav')
   </div>
   <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 <!--     <div class="card ">

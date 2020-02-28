@@ -89,3 +89,11 @@ Route::delete('/users/followers/{user}', 'FollowersController@destroy')->name('f
 
 // 关注人feeds流
 Route::get('/feeds', 'TopicsController@feeds')->name('topics.feeds');
+
+
+
+// 收藏
+Route::post('/users/favorites/{topic}', 'FavoritesController@store')->name('favorites.store');
+Route::delete('/users/unfavorites/{topic}', 'FavoritesController@destroy')->name('favorites.destroy');
+
+Route::get('/my_favorites', 'UsersController@myFavorites')->name('users.my_favorites');

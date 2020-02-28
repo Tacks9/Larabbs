@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
-
+use Illuminate\Support\Facades\DB;
 use Auth;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -73,14 +73,13 @@ class User extends Authenticatable implements MustVerifyEmailContract
         'email_verified_at' => 'datetime',
     ];
 
-    //   【一对多】
-    //   一个用户可以发布多个帖子
+    // 【一对多】  一个用户可以发布多个帖子
     public function topics()
     {
         return $this->hasMany(Topic::class);
     }
 
-    // 一个用户可以拥有多条评论
+    // 【一对多】 一个用户可以拥有多条评论
     public function replies()
     {
         return $this->hasMany(Reply::class);
@@ -98,11 +97,19 @@ class User extends Authenticatable implements MustVerifyEmailContract
         return $this->belongsToMany(User::Class,'followers', 'user_id', 'follower_id');
     }
 
-    // 用户关注人列表
+    // 【多对多】 用户关注人列表
     public function followings()
     {
         return $this->belongsToMany(User::Class, 'followers', 'follower_id', 'user_id');
     }
+
+
+    // 【多对多】 一个用户可以收藏多个帖子
+    public function favorites()
+    {
+        return $this->belongsToMany(Topic::class, 'favorites', 'user_id', 'topic_id');
+    }
+
 
     // 当前用户是否等于编辑的id
     public function isAuthorOf($model)
@@ -183,5 +190,30 @@ class User extends Authenticatable implements MustVerifyEmailContract
         return Topic::whereIn('user_id', $user_ids)
                               ->with('user', 'category')
                               ->orderBy('top', 'desc');
+    }
+
+    // 收藏
+    public function favorite($topic_ids)
+    {
+        if( !is_array($topic_ids)) {
+            $topic_ids = compact('topic_ids'); // 转成数组
+        }
+        Auth::user()->favorites()->attach($topic_ids);
+    }
+
+    // 取消收藏
+    public function unfavorite($topic_ids)
+    {
+        if( !is_array($topic_ids)) {
+            $topic_ids = compact('topic_ids'); // 转成数组
+        }
+        Auth::user()->favorites()->detach($topic_ids);
+    }
+
+     // 判断当前用户 是否收藏本篇
+    public function isfavoring($topic_id)
+    {
+        return (bool) DB::table('favorites')->where('topic_id',$topic_id)
+                ->where('user_id',Auth::user()->id)->count();
     }
 }

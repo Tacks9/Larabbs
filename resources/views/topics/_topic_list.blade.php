@@ -50,10 +50,16 @@
                 {{ $topic->view_count }}
               </span>
             </a>
-             <a class="float-right" href="{{ route('topics.show', [$topic->id]) }}">
+             <a class="float-right float-right-space" href="{{ route('topics.show', [$topic->id]) }}">
               <span class="badge badge-secondary badge-pill">
                 <i class="fa fa-comments-o" aria-hidden="true"></i>
                 {{ $topic->reply_count }}
+                </span>
+            </a>
+            <a class="float-right" href="{{ route('topics.show', [$topic->id]) }}">
+              <span class="badge badge-secondary badge-pill">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+                {{ $topic->favorite_count }}
                 </span>
             </a>
           </small>

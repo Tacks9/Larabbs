@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Auth;
 
 class Topic extends Model
 {
@@ -24,6 +25,14 @@ class Topic extends Model
     public function replies()
     {
         return $this->hasMany(Reply::class);
+    }
+
+    //
+    public function favorited()
+    {
+        return (bool) Favorite::where('user_id', Auth::id())
+                            ->where('topic_id', $this->id)
+                            ->first();
     }
 
 /*

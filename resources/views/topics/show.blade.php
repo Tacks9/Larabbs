@@ -30,7 +30,14 @@
             ⋅
              <i class="fa fa-comments-o" aria-hidden="true"></i>
             {{ $topic->reply_count }}
-
+            ⋅
+             <!--  <i class="fa fa-heart-o" aria-hidden="true"></i>
+              {{ $topic->favorite_count }}
+ -->
+             <!-- 收藏 -->
+            @if (Auth::check())
+                @include('topics._favorit_form',['user'=>$topic->user])
+              @endif
 
           </div>
 

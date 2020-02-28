@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use App\Handlers\ImageUploadHandler;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -66,4 +67,12 @@ class UsersController extends Controller
         return view('users.show_follow', compact('user','users', 'title'));
     }
 */
+
+    // 收藏列表
+    public function myFavorites(User $user)
+    {
+        $user = Auth::user(); // 当前登录的用户
+        $myFavorites = Auth::user()->favorites()->paginate(8);
+        return view('users.my_favorites', compact('user','myFavorites'));
+    }
 }

@@ -76,7 +76,11 @@
                 <i class="far fa-user mr-2"></i>
                 个人中心
               </a>
-
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ route('users.my_favorites',['tab'=>'my_favorites']) }}">
+                <i class="fa fa-star-o mr-2" aria-hidden="true"></i>
+                我的收藏
+              </a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('users.edit', Auth::id()) }}">
                 <i class="far fa-edit mr-2"></i>

@@ -83,7 +83,7 @@ class TopicsController extends Controller
         $topic->save();                //  保存到数据库中
 
         // return redirect()->route('topics.show', $topic->id)->with('success', '帖子创建成功！');
-        return redirect()->to($topic->link())->with('success', '成功创建话题！');
+        return redirect()->to($topic->link())->with('success', '成功创建帖子！');
 	}
 
 	public function edit(Topic $topic,Category $category)
@@ -104,7 +104,7 @@ class TopicsController extends Controller
 		$topic->update($request->all());
 
 		// return redirect()->route('topics.show', $topic->id)->with('message', '更新成功！');
-        return redirect()->to($topic->link())->with('success', '更新成功！');
+        return redirect()->to($topic->link())->with('success', '更新帖子成功！');
 
 	}
 
@@ -113,7 +113,7 @@ class TopicsController extends Controller
 		$this->authorize('destroy', $topic);
 		$topic->delete();
 
-		return redirect()->route('topics.index')->with('message', '成功删除！');
+		return redirect()->route('topics.index')->with('message', '成功删除帖子！');
 	}
 
     // 上传图片

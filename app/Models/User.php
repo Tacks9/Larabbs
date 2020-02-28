@@ -182,6 +182,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
         array_push($user_ids, $this->id);
         return Topic::whereIn('user_id', $user_ids)
                               ->with('user', 'category')
-                              ->orderBy('created_at', 'desc');
+                              ->orderBy('top', 'desc');
     }
 }

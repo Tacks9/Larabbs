@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -36,5 +37,33 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+
+
+    // 重写AuthenticatesUsers Tarit 返回登录成功的消息给浏览器
+    protected function sendLoginResponse(Request $request)
+    {
+        ///////重写////////
+        // 设置记住我的时间为1周
+        $rememberTokenExpireMinutes = 60*24*7;
+
+        // 首先获取 记住我 这个 Cookie 的名字, 这个名字一般是随机生成的,
+        // 类似 remember_web_59ba36addc2b2f9401580f014c7f58ea4e30989d
+        $rememberTokenName = Auth::getRecallerName();
+
+        // 再次设置一次这个 Cookie 的过期时间
+        Cookie::queue($rememberTokenName, Cookie::get($rememberTokenName), $rememberTokenExpireMinutes);
+
+        ///////重写END////////
+
+
+        // 下面的代码是从 AuthenticatesUsers 中的 sendLoginResponse() 直接复制而来
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        return $this->authenticated($request, $this->guard()->user())
+            ?: redirect()->intended($this->redirectPath());
     }
 }

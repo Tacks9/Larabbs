@@ -1,9 +1,15 @@
+<!-- 左侧用户的基本信息 -->
+
 <div class="card ">
+  <!-- 头像 -->
+
   <img class="card-img-top" src="{{ $user->avatar }}" alt="{{ $user->name }}">
   <!-- 关注按钮 -->
   @if (Auth::check())
     @include('users._follow_form')
   @endif
+
+  <!-- 关注 粉丝 帖子 -->
   <div class="acard-body mt-2">
       <div class="clearfix text-center border-bottom">
         <a href="{{ route('users.show', [$user->id, 'tab' => 'followings']) }}">
@@ -31,7 +37,7 @@
         </div>
       </a>
       </div>
-
+    <!-- 个人信息 -->
     <div class="text-secondary p-3">
         <h5>
           <i class="fa fa-home" style="width: 20px;" aria-hidden="true"></i>

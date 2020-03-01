@@ -96,4 +96,5 @@ Route::get('/feeds', 'TopicsController@feeds')->name('topics.feeds');
 Route::post('/users/favorites/{topic}', 'FavoritesController@store')->name('favorites.store');
 Route::delete('/users/unfavorites/{topic}', 'FavoritesController@destroy')->name('favorites.destroy');
 
-Route::get('/my_favorites', 'UsersController@myFavorites')->name('users.my_favorites');
+
+// Route::get('/my_favorites', 'UsersController@myFavorites')->name('users.my_favorites');

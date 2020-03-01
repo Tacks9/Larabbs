@@ -20,9 +20,7 @@ class UsersController extends Controller
     // 个人页面
     public function show(User $user)
     {
-        $usersFollowings = $user->followings()->paginate(8);
-        $usersFollowers = $user->followers()->paginate(8);
-        return view('users.show', compact('user','usersFollowings','usersFollowers'));
+        return view('users.show', compact('user'));
     }
 
     // 编辑页面
@@ -66,7 +64,7 @@ class UsersController extends Controller
         $title = $user->name . '的粉丝';
         return view('users.show_follow', compact('user','users', 'title'));
     }
-*/
+
 
     // 收藏列表
     public function myFavorites(User $user)
@@ -75,4 +73,6 @@ class UsersController extends Controller
         $myFavorites = Auth::user()->favorites()->paginate(8);
         return view('users.my_favorites', compact('user','myFavorites'));
     }
+*/
+
 }

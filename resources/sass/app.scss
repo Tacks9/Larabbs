@@ -213,9 +213,29 @@ body {
 
 
 /* 个人页面 左侧菜单*/
-.list-group-item.active{
+.list-group-item.active {
   background-color: #5a73cc !important;
 }
 .list-group  {
     a{text-decoration: none}
+}
+
+
+/* 个人页面 左侧菜单 数字标记 */
+.list-group-item .badge{
+  color: #fff;
+  background-color: #777;
+  text-align: center;
+  float:right;
+  background: gray;
+  width: 25px;
+  height: 25px;
+  min-width: 20px;
+  max-width: 30px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  vertical-align: middle;
+  padding: 7px 2px;
 }

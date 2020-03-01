@@ -8,11 +8,11 @@
 
         <div class="card-body">
           <h2 class="">
-            <i class="far fa-edit"></i>
+            <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
             @if($topic->id)
-            编辑话题
+            编辑帖子
             @else
-            新建话题
+            新建帖子
             @endif
           </h2>
 
@@ -45,7 +45,7 @@
               </div>
 
               <div class="form-group">
-                <textarea name="body" class="form-control" id="editor" rows="6" placeholder="请填入至少三个字符的内容。" required>{{ old('body', $topic->body ) }}</textarea>
+                <textarea name="body" class="form-control" id="editor" rows="6" placeholder="至少三个字符的内容...." required>{{ old('body', $topic->body ) }}</textarea>
               </div>
 
               <div class="well well-sm">

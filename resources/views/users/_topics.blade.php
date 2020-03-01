@@ -7,9 +7,9 @@
                 {{ $topic->title }}
         </a>
         <span class="meta float-right text-secondary">
-          {{ $topic->reply_count }} 回复
+          {{ $topic->reply_count }}条回复
           <span> ⋅ </span>
-          {{ $topic->created_at->diffForHumans() }}
+          {{ $topic->created_at->diffForHumans() }}发布
         </span>
       </li>
     @endforeach

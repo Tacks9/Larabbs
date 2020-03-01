@@ -77,7 +77,7 @@
                 个人中心
               </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{ route('users.my_favorites',['tab'=>'my_favorites']) }}">
+              <a class="dropdown-item" href="{{ route('users.show',[Auth::id(),'tab'=>'favorites']) }}">
                 <i class="fa fa-star-o mr-2" aria-hidden="true"></i>
                 我的收藏
               </a>

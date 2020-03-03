@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\Link;
 use App\Models\Carousel;
 use App\Models\Tag;
+use DB;
 
 class TopicsController extends Controller
 {
@@ -64,7 +65,8 @@ class TopicsController extends Controller
             $topic->increment('view_count');
         }
 
-        return view('topics.show', compact('topic','is_status')); // 『隐性路由模型绑定』 自动解析为 ID的帖子对象
+        $tags = $topic->tags_topics()->paginate(3);
+        return view('topics.show', compact('topic','is_status','tags')); // 『隐性路由模型绑定』 自动解析为 ID的帖子对象
     }
 
 	public function create(Topic $topic,Category $category,Tag $tag)
@@ -80,10 +82,23 @@ class TopicsController extends Controller
 	{
 		// $topic = Topic::create($request->all());
         // fill 方法会将传参的键值数组填充到模型的属性
-        $topic->fill($request->all()); // 获取所有用户的请求数据数组
+        $data = $request->all();
+        $topic->fill($data); // 获取所有用户的请求数据数组
         $topic->user_id = Auth::id();  // 当前用户id
 
         $topic->save();                //  保存到数据库中
+
+        // 标签_帖子 关联表
+        $topic_id = $topic->id;                      // 新增的帖子id
+        $tags_arr = explode(',',$data['input_tag']); // 新增的标签id
+        $tdata    = [];
+        foreach ($tags_arr as $tag_id) {
+            $tdata[] = [
+                'tag_id'  => $tag_id,
+                'topic_id'=> $topic_id,
+            ];
+        }
+        DB::table('tags_topics')->insert($tdata);
 
         // return redirect()->route('topics.show', $topic->id)->with('success', '帖子创建成功！');
         return redirect()->to($topic->link())->with('success', '成功创建帖子！');

@@ -16,12 +16,19 @@
         @if ( $is_status == 0)
             <div class="alert alert-warning" role="alert">正在审核中，通过后其他人方可看到，并进行回复~</div>
         @endif
+
       <div class="card">
         <div class="card-body">
           <h1 class="text-center mt-3 mb-3">
             {{ $topic->title }}
           </h1>
-
+          <div class="article-meta text-center text-secondary">
+            @foreach ($tags as $tag)
+                 <a class="btn btn-default btn-sm"
+                 style="background: #c6c7c97a;color: #6c757d;"
+                 href="#{{ $tag->id }}" role="button">{{ $tag->name }}</a>
+             @endforeach
+          </div>
           <div class="article-meta text-center text-secondary">
             {{ $topic->created_at->diffForHumans() }}
             ⋅

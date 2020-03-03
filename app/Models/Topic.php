@@ -27,6 +27,12 @@ class Topic extends Model
         return $this->hasMany(Reply::class);
     }
 
+    // 【多对多】 一个帖子可以有多个标签
+    public function tags_topics()
+    {
+        return $this->belongsToMany(Tag::class, 'tags_topics', 'topic_id', 'tag_id');
+    }
+
     //
     public function favorited()
     {

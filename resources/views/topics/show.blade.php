@@ -44,6 +44,23 @@
           <div class="topic-body mt-4 mb-4">
             {!! $topic->body !!}
           </div>
+          <div class="bshare-custom icon-medium">
+            <a title="分享到QQ空间" class="bshare-qzone"></a>
+            <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+            <a title="分享到百度贴吧" class="bshare-itieba"></a>
+            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+            <span class="BSHARE_COUNT bshare-share-count">0</span>
+          </div>
+          <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
+          <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+
+          <div class="social-share"></div>
+
+          <!-- share.css -->
+          <link rel="stylesheet" href="dist/css/share.min.css">
+
+          <!-- share.js -->
+          <script src="dist/js/share.min.js"></script>
 
           @can('update', $topic)
             <div class="operate">

@@ -17982,3 +17982,14 @@ body {
   padding: 7px 2px;
 }
 
+/* 发布帖子 选择标签 下拉框*/
+
+.btn-light,
+.show > .btn-light.dropdown-toggle {
+  background-color: white !important;
+}
+
+.bootstrap-select.form-control {
+  border: 1px solid #ced4da !important;
+}
+

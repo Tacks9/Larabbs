@@ -12,6 +12,7 @@ use App\Handlers\ImageUploadHandler;
 use App\Models\User;
 use App\Models\Link;
 use App\Models\Carousel;
+use App\Models\Tag;
 
 class TopicsController extends Controller
 {
@@ -66,10 +67,12 @@ class TopicsController extends Controller
         return view('topics.show', compact('topic','is_status')); // 『隐性路由模型绑定』 自动解析为 ID的帖子对象
     }
 
-	public function create(Topic $topic,Category $category)
+	public function create(Topic $topic,Category $category,Tag $tag)
 	{
         $categories = $category->getSwitchCategory();  // 显示分类
-		return view('topics.create_and_edit', compact('topic', 'categories'));
+
+        $tags       = $tag->cacheTags(); // 获取标签 缓存
+		return view('topics.create_and_edit', compact('topic', 'categories','tags'));
 	}
 
     // 存储

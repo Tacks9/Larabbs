@@ -45,16 +45,11 @@
                   <div class="col-sm-9">
                       <select id="select_tag" name="select_tag" class="selectpicker show-tick form-control" multiple data-live-search="true" data-max-options="3"
                        title="最多选择三个标签" >
-                              <option value="0" data-tokens="apple">苹果</option>
-                              <option value="1">菠萝</option>
-                              <option value="2">香蕉</option>
-                              <option value="3">火龙果</option>
-                              <option value="4">梨子</option>
-                              <option value="5">草莓</option>
-                              <option value="6">哈密瓜</option>
-                              <option value="7">椰子</option>
-                              <option value="8">猕猴桃</option>
-                              <option value="9">桃子</option>
+                        @foreach ($tags as $value)
+                              <option value="{{ $value->id }}"
+                                 data-tokens="{{ $value->description }}">
+                                 {{ $value->name }}</option>
+                        @endforeach
                       </select>
                   </div>
                   <input type="text" id="input_tag" style="display:none;" name="input_tag"/>
@@ -125,18 +120,12 @@
         $('#select-tag').selectpicker({
             'selectedText': 'cat'
         });
-          $('#select_tag').on('changed.bs.select', function(e) {
-     $("#input_tag").val($(this).val());
-     $("#select_tag").val(response_data.split(","));
-    $("#input_tag").val(response_data);
-    });
+        $('#select_tag').on('changed.bs.select', function(e) {
+          $("#input_tag").val($(this).val());
+        });
     });
 
-    $('#select_tag').on('changed.bs.select', function(e) {
-     $("#input_tag").val($(this).val());
-     $("#select_tag").val(response_data.split(","));
-    $("#input_tag").val(response_data);
-    });
+
   </script>
 
 

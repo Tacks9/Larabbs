@@ -76,7 +76,8 @@ class TopicsController extends Controller
         $categories = $category->getSwitchCategory();  // 显示分类
 
         $tags       = $tag->cacheTags(); // 获取标签 缓存
-		return view('topics.create_and_edit', compact('topic', 'categories','tags'));
+        $tags_str   = ''; // 编辑的时候使用
+		return view('topics.create_and_edit', compact('topic', 'categories','tags','tags_str'));
 	}
 
     // 存储
@@ -106,7 +107,7 @@ class TopicsController extends Controller
         return redirect()->to($topic->link())->with('success', '成功创建帖子！');
 	}
 
-	public function edit(Topic $topic,Category $category)
+	public function edit(Topic $topic,Category $category,Tag $tag)
 	{
         // $this->authorize('update', $topic);
 	   //  return view('topics.create_and_edit', compact('topic'));
@@ -114,7 +115,10 @@ class TopicsController extends Controller
 
         // $categories = Category::all();      // 传入分类
         $categories = $category->getSwitchCategory();  // 显示分类
-        return view('topics.create_and_edit', compact('topic', 'categories'));
+        $tags       = $tag->cacheTags(); // 获取标签 缓存
+        $tags_arr   = $topic->tags_topics()->get()->toArray();
+        $tags_str   = implode(',',array_column($tags_arr,'id'));
+        return view('topics.create_and_edit', compact('topic', 'categories','tags','tags_str'));
 	}
 
 	public function update(TopicRequest $request, Topic $topic)
@@ -124,6 +128,23 @@ class TopicsController extends Controller
 		$topic->update($request->all());
 
 		// return redirect()->route('topics.show', $topic->id)->with('message', '更新成功！');
+
+        // 标签_帖子 关联表
+        $data = $request->all();
+        $topic_id = $topic->id;                      // 编辑的帖子id
+
+        DB::table('tags_topics')->where('topic_id',$topic_id)->delete();
+
+        $tags_arr = explode(',',$data['input_tag']); // 编辑的标签id
+        $tdata    = [];
+        foreach ($tags_arr as $tag_id) {
+            $tdata[] = [
+                'tag_id'  => $tag_id,
+                'topic_id'=> $topic_id,
+            ];
+        }
+        DB::table('tags_topics')->insert($tdata);
+
         return redirect()->to($topic->link())->with('success', '更新帖子成功！');
 
 	}

@@ -120,9 +120,19 @@
         $('#select-tag').selectpicker({
             'selectedText': 'cat'
         });
+        // 数据传输
+        // 新建
         $('#select_tag').on('changed.bs.select', function(e) {
-          $("#input_tag").val($(this).val());
+           $("#input_tag").val($(this).val());
         });
+        // 编辑
+        response_edit = '{{ $tags_str ? $tags_str : ''  }}'
+        if(response_edit) {
+           $("#select_tag").val(response_edit.split(","));
+          $("#input_tag").val(response_edit);
+          $("#select_tag").selectpicker('refresh');
+        }
+
     });
 
 

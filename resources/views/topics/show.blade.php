@@ -62,13 +62,7 @@
           <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
           <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
 
-          <div class="social-share"></div>
 
-          <!-- share.css -->
-          <link rel="stylesheet" href="dist/css/share.min.css">
-
-          <!-- share.js -->
-          <script src="dist/js/share.min.js"></script>
 
           @can('update', $topic)
             <div class="operate">

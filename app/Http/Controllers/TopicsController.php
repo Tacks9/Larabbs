@@ -94,6 +94,9 @@ class TopicsController extends Controller
         // 标签_帖子 关联表
         $topic_id = $topic->id;                      // 新增的帖子id
         $tags_arr = explode(',',$data['input_tag']); // 新增的标签id
+        // 标签+1
+        DB::table('tags')->whereIn('id',$tags_arr)->increment('post_count');
+
         $tdata    = [];
         foreach ($tags_arr as $tag_id) {
             $tdata[] = [
@@ -133,10 +136,18 @@ class TopicsController extends Controller
         $data = $request->all();
         $topic_id = $topic->id;                      // 编辑的帖子id
 
+        // 先得到当前的标签id
+        $tags_arr = $topic->tags_topics()->get()->toArray();
+        $tags_arr = array_column($tags_arr,'id');
+
+        // 标签 帖子数量-1
+        DB::table('tags')->whereIn('id',$tags_arr)->decrement('post_count');
+        // 删除之前的标签
         DB::table('tags_topics')->where('topic_id',$topic_id)->delete();
 
         $tags_arr = explode(',',$data['input_tag']); // 编辑的标签id
         $tdata    = [];
+
         foreach ($tags_arr as $tag_id) {
             $tdata[] = [
                 'tag_id'  => $tag_id,

@@ -18,5 +18,7 @@ $factory->define(App\Models\Topic::class, function (Faker $faker) {
         'excerpt' => $sentence,
         'created_at' => $created_at,
         'updated_at' => $updated_at,
+        // 同时 填充的数据默认是已经审核过的
+        'status' => 1,
     ];
 });

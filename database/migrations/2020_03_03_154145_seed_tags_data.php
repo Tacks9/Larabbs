@@ -16,27 +16,27 @@ class SeedTagsData extends Migration
         $tags = [
             [
                 'name'        => '面经',
-                'description' => 'mianjing',
+                'description' => 'Interview experience',
             ],
             [
                 'name'        => '内推',
-                'description' => 'neitui',
+                'description' => 'Internal recommendation',
             ],
             [
                 'name'        => '校招',
-                'description' => 'xiaozhao',
+                'description' => 'Campus Recruitment',
             ],
             [
                 'name'        => '前端',
-                'description' => 'qianduan',
+                'description' => 'Front Web',
             ],
             [
                 'name'        => '后端',
-                'description' => 'houduan',
+                'description' => 'Back Web',
             ],
             [
                 'name'        => '吐槽',
-                'description' => 'tucao',
+                'description' => 'discuss',
             ],
             [
                 'name'        => 'Linux',
@@ -48,7 +48,7 @@ class SeedTagsData extends Migration
             ],
             [
                 'name'        => '服务器',
-                'description' => 'fuwuqi',
+                'description' => 'Server',
             ],
         ];
 

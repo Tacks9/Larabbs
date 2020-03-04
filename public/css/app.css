@@ -17528,253 +17528,51 @@ body {
   border: 1px solid #ced4da !important;
 }
 
-/* 帖子标签 */
+/* 标签云 */
 
-.tags {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.wrapper {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
 }
 
-.tag {
-  color: #737373;
-  background: #cccccc;
-  box-shadow: 0 4px 0 0 #b3b3b3, 4px 4px 0 0 #b3b3b3;
-  display: inline-block;
-  font: normal normal normal 14px/12px "Open Sans", sans-serif;
-  height: 30px;
-  margin: 0 2rem 1rem 0;
-  padding: 1rem 2.8rem 1rem 2rem;
-  position: relative;
-  top: 0;
-  content: "";
-  cursor: pointer;
+.wrapper p {
+  padding-top: 150px;
+  line-height: 27px;
+  color: #999;
+  font-size: 14px;
   text-align: center;
-  text-transform: lowercase;
-  border: 0 solid transparent;
-  transition: all 0.3s ease;
 }
 
-.tag:before {
-  color: rgba(255, 255, 255, 0.9);
-  background: #cccccc;
-  box-shadow: 0 4px 0 0 #b3b3b3;
-  display: inline-block;
-  width: 22px;
-  height: 22px;
-  position: absolute;
-  top: 4px;
-  right: -12px;
-  z-index: 1;
-  content: "";
-  cursor: pointer;
-  transform: rotateY(1deg) rotateZ(-45deg) scaleX(1) scaleY(1) scaleZ(1);
-  transition: all 0.3s ease;
-}
-
-.tag:hover:before {
-  background: #d9d9d9;
-}
-
-.tag:active:before {
-  box-shadow: none;
-}
-
-.tag:after {
-  display: inline-block;
-  background: #FFF;
-  border-radius: 10px;
-  box-shadow: 3px 3px 0 0 #b3b3b3 inset;
-  width: 8px;
-  height: 8px;
-  position: absolute;
-  top: 12px;
-  right: 0;
-  z-index: 2;
-  content: "";
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.tag:active:after {
-  box-shadow: none;
-}
-
-.tag:hover {
-  background: #d9d9d9;
-  transform: scale(1.03, 1.03);
-}
-
-.tag:active {
-  box-shadow: none;
-  top: 4px;
-}
-
-.tag span {
+.tagcloud {
   position: relative;
-  z-index: 2;
+  /*  margin-top: -150px; */
 }
 
-.tag span.num {
-  display: block;
-  color: #bfbfbf;
+.tagcloud a {
   position: absolute;
   top: 0;
   left: 0;
-  margin: 0;
-  font: bold 50px/28px "Open Sans", sans-serif;
-  letter-spacing: -6px;
-  overflow: hidden;
-  height: 30px;
-  width: 100%;
-  text-align: left;
-  z-index: 1;
+  display: block;
+  padding: 3px 8px;
+  color: #333;
+  font-size: 80%;
+  /* 字体样式 */
+  border: 1px solid #e6e7e8;
+  border-radius: 18px;
+  background-color: #f2f4f8;
+  text-decoration: none;
+  white-space: nowrap;
+  -o-box-shadow: 6px 4px 8px 0 rgba(151, 142, 136, 0.34);
+  -ms-box-shadow: 6px 4px 8px 0 rgba(151, 142, 136, 0.34);
+  box-shadow: 6px 4px 8px 0 rgba(151, 142, 136, 0.34);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4,Direction=135, Color='#000000')";
+  /*兼容ie7/8*/
+  filter: progid:DXImageTransform.Microsoft.Shadow(color="#969696", Direction=125, Strength=9);
+  /*strength是阴影大小，direction是阴影方位，单位为度，可以为负数，color是阴影颜色 （尽量使用数字）使用IE滤镜实现盒子阴影的盒子必须是行元素或以行元素显示（block或inline-block;）*/
 }
 
-/* Rounded Tag */
-
-.tag-round {
-  border-radius: 4px 1px 1px 4px;
-}
-
-.tag-round:before {
-  border-radius: 1px 1px 4px;
-}
-
-/* Colors */
-
-.tag-aqua {
-  color: #072520;
-  background: #28d0b3;
-  box-shadow: 0 4px 0 0 #20a58e, 4px 4px 0 0 #20a58e;
-}
-
-.tag-aqua:before {
-  background: #28d0b3;
-  box-shadow: 0 4px 0 0 #20a58e;
-}
-
-.tag-aqua:hover:before {
-  background: #39d9bd;
-}
-
-.tag-aqua:after {
-  box-shadow: 3px 3px 0 0 #20a58e inset;
-}
-
-.tag-aqua:hover {
-  background: #39d9bd;
-}
-
-.tag-aqua span.num {
-  color: #24bba1;
-}
-
-.tag-blue {
-  color: black;
-  background: #5945e8;
-  box-shadow: 0 4px 0 0 #331cde, 4px 4px 0 0 #331cde;
-}
-
-.tag-blue:before {
-  background: #5945e8;
-  box-shadow: 0 4px 0 0 #331cde;
-}
-
-.tag-blue:hover:before {
-  background: #6d5ceb;
-}
-
-.tag-blue:after {
-  box-shadow: 3px 3px 0 0 #331cde inset;
-}
-
-.tag-blue:hover {
-  background: #6d5ceb;
-}
-
-.tag-blue span.num {
-  color: #452ee5;
-}
-
-.tag-orange {
-  color: #221202;
-  background: #e17a0f;
-  box-shadow: 0 4px 0 0 #b1600c, 4px 4px 0 0 #b1600c;
-}
-
-.tag-orange:before {
-  background: #e17a0f;
-  box-shadow: 0 4px 0 0 #b1600c;
-}
-
-.tag-orange:hover:before {
-  background: #f0871a;
-}
-
-.tag-orange:after {
-  box-shadow: 3px 3px 0 0 #b1600c inset;
-}
-
-.tag-orange:hover {
-  background: #f0871a;
-}
-
-.tag-orange span.num {
-  color: #c96d0d;
-}
-
-.tag-red {
-  color: #290a0a;
-  background: #cc3333;
-  box-shadow: 0 4px 0 0 #a32929, 4px 4px 0 0 #a32929;
-}
-
-.tag-red:before {
-  background: #cc3333;
-  box-shadow: 0 4px 0 0 #a32929;
-}
-
-.tag-red:hover:before {
-  background: #d14747;
-}
-
-.tag-red:after {
-  box-shadow: 3px 3px 0 0 #a32929 inset;
-}
-
-.tag-red:hover {
-  background: #d14747;
-}
-
-.tag-red span.num {
-  color: #b82e2e;
-}
-
-.tag-yellow {
-  color: #312b03;
-  background: #eed112;
-  box-shadow: 0 4px 0 0 #bfa80e, 4px 4px 0 0 #bfa80e;
-}
-
-.tag-yellow:before {
-  background: #eed112;
-  box-shadow: 0 4px 0 0 #bfa80e;
-}
-
-.tag-yellow:hover:before {
-  background: #f0d62a;
-}
-
-.tag-yellow:after {
-  box-shadow: 3px 3px 0 0 #bfa80e inset;
-}
-
-.tag-yellow:hover {
-  background: #f0d62a;
-}
-
-.tag-yellow span.num {
-  color: #d7bd0f;
+.tagcloud a:hover {
+  color: #5a73cc;
 }
 

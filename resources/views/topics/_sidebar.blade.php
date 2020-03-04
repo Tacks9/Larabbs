@@ -84,6 +84,26 @@
   </div>
 @endif
 
+@if (count($tags))
+  <div class="card mt-4">
+    <div class="card-body pt-2" style="overflow: hidden;">
+      <div class="text-center mt-1 mb-0 text-muted">
+        <i class="fa fa-tags" aria-hidden="true"></i>
+            标签云
+        </div>
+      <hr class="mt-2 mb-3">
+
+      <div class="wrapper">
+        <div class="tagcloud">
+            @foreach ($tags as $tag)
+                <a href="#">{{ $tag->name }}&{{ $tag->post_count }}</a>
+            @endforeach
+        </div>
+      </div>
+    </div>
+  </div>
+@endif
+
 
 @if (count($links))
   <div class="card mt-4">
@@ -103,3 +123,22 @@
     </div>
   </div>
 @endif
+
+
+@section('scripts')
+<!-- 引入标签云js -->
+  <script type="text/javascript" src="{{ asset('js/tagcloud.js') }}"></script>
+  <script type="text/javascript">
+
+     /*3D标签云*/
+    tagcloud({
+        selector: ".tagcloud",  //元素选择器
+        fontsize: 16,       //基本字体大小, 单位px
+        radius: 100,         //滚动半径, 单位px
+        mspeed: "normal",   //滚动最大速度, 取值: slow, normal(默认), fast
+        ispeed: "normal",   //滚动初速度, 取值: slow, normal(默认), fast
+        direction: 135,     //初始滚动方向, 取值角度(顺时针360): 0对应top, 90对应left, 135对应right-bottom(默认)...
+        keep: false          //鼠标移出组件后是否继续随鼠标滚动, 取值: false, true(默认) 对应 减速至初速度滚动, 随鼠标滚动
+    });
+  </script>
+@stop

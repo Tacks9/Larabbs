@@ -24,8 +24,9 @@
           </h1>
           <div class="article-meta text-center text-secondary">
             @foreach ($tags as $tag)
-                 <a class="btn btn-default btn-sm"
-                 style="background: #c6c7c97a;color: #6c757d;"
+                 <a class=" "
+                 style="background: #c6c7c97a;color: #6c757d;padding: 4px;
+                 border-radius: 3px;font-size: 1px;text-decoration: none;"
                  href="#{{ $tag->id }}" role="button">{{ $tag->name }}</a>
              @endforeach
           </div>

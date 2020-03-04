@@ -8,11 +8,12 @@ use App\Models\Category;// 分类
 use App\Models\User;    // 用户
 use App\Models\Link;    // 链接
 use App\Models\Carousel;// 轮播图
+use App\Models\Tag;     // 标签
 
 class CategoriesController extends Controller
 {
     // 按照分类展示帖子
-    public function show(Category $category, Request $request, Topic $topic, User $user, Link $link, Carousel $carousel)
+    public function show(Category $category, Request $request, Topic $topic, User $user, Link $link, Carousel $carousel,Tag $tag)
     {
         // 读取分类 ID 关联的帖子，并按每 20 条分页
         // $topics = Topic::where('category_id', $category->id)->paginate(20);
@@ -27,7 +28,9 @@ class CategoriesController extends Controller
         $links = $link->getAllCached();
         // 轮播图
         $carousels = $carousel->getAllCached();
+        // 标签缓存
+        $tags       = $tag->cacheTags(); // 获取标签 缓存
         // 传参变量到模板中
-        return view('topics.index', compact('topics', 'category', 'active_users', 'links','carousels'));
+        return view('topics.index', compact('topics', 'category', 'active_users', 'links','carousels','tags'));
     }
 }

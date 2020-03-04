@@ -23,7 +23,7 @@ class TopicsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show', 'search']]);
     }
 
-	public function index(Request $request, Topic $topic, User $user, Link $link, Carousel $carousel)
+	public function index(Request $request, Topic $topic, User $user, Link $link, Carousel $carousel,Tag $tag)
 	{
 		// $topics = Topic::paginate();
         // $topics = Topic::with('user', 'category')->paginate(30); // 预加载 缓存 关联关系
@@ -35,8 +35,10 @@ class TopicsController extends Controller
         $links = $link->getAllCached();
         $carousels = $carousel->getAllCached();
 
+        $tags       = $tag->cacheTags(); // 获取标签 缓存
+
         // 传参变量到模板中
-        return view('topics.index', compact('topics', 'category', 'active_users', 'links','carousels'));
+        return view('topics.index', compact('topics', 'category', 'active_users', 'links','carousels','tags'));
 	}
 
     public function show(Request $request, Topic $topic)
@@ -158,7 +160,7 @@ class TopicsController extends Controller
     }
 
     // 搜索
-    public function search(Request $request,Topic $topic, User $user, Link $link, Carousel $carousel)
+    public function search(Request $request,Topic $topic, User $user, Link $link, Carousel $carousel,Tag $tag)
     {
 
         $keyword=$request->input('keyword');
@@ -170,20 +172,23 @@ class TopicsController extends Controller
         $active_users = $user->getActiveUsers();
         $links = $link->getAllCached();
         $carousels = $carousel->getAllCached();
+        $tags       = $tag->cacheTags(); // 获取标签 缓存
 
-        return view('topics.search', compact('topics','keyword','count', 'active_users', 'links','carousels'));
+        return view('topics.search', compact('topics','keyword','count', 'active_users', 'links','carousels','tags'));
     }
 
     // 用户feed流
-    public function feeds(Request $request,Topic $topic, User $user, Link $link, Carousel $carousel)
+    public function feeds(Request $request,Topic $topic, User $user, Link $link, Carousel $carousel,Tag $tag)
     {
         $user = Auth::user();
-        $topics = $user->feed()->orderBy('updated_at','desc')->paginate(10);
+        $topics = $user->feed()->orderBy('updated_at','desc')->paginate(20);
         $count  = $user->feed()->count();
 
         $active_users = $user->getActiveUsers();
         $links = $link->getAllCached();
         $carousels = $carousel->getAllCached();
-         return view('topics.feed', compact('topics', 'category', 'active_users', 'links','carousels','count'));
+
+        $tags       = $tag->cacheTags(); // 获取标签 缓存
+         return view('topics.feed', compact('topics', 'category', 'active_users', 'links','carousels','count','tags'));
     }
 }

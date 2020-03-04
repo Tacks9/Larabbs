@@ -27,7 +27,8 @@
                  <a class=" "
                  style="background: #c6c7c97a;color: #6c757d;padding: 4px;
                  border-radius: 3px;font-size: 1px;text-decoration: none;"
-                 href="#{{ $tag->id }}" role="button">{{ $tag->name }}</a>
+                 href="{{ route('tags.show', $tag->id) }}" role="button">
+                 {{ $tag->name }}</a>
              @endforeach
           </div>
           <div class="article-meta text-center text-secondary">

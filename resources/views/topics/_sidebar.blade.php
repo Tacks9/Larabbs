@@ -96,7 +96,8 @@
       <div class="wrapper">
         <div class="tagcloud">
             @foreach ($tags as $tag)
-                <a href="#">{{ $tag->name }}&{{ $tag->post_count }}</a>
+                <a href="{{ route('tags.show', $tag->id) }}">
+                  {{ $tag->name }}&{{ $tag->post_count }}</a>
             @endforeach
         </div>
       </div>

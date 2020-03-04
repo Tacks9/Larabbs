@@ -16884,13 +16884,14 @@ body {
   padding: 3px;
 }
 
-/* Topic  categories Index Page */
+/* Topic  categories Index Page 页面样式定制 */
 
 .topics-index-page .topic-list .nav > li > a,
 .categories-show-page .topic-list .nav > li > a,
 .root-page .topic-list .nav > li > a,
 .topics-search-page .topic-list .nav > li > a,
-.topics-feeds-page .topic-list .nav > li > a {
+.topics-feeds-page .topic-list .nav > li > a,
+.tags-show-page .topic-list .nav > li > a {
   position: relative;
   display: block;
   padding: 5px 14px;
@@ -16901,7 +16902,8 @@ body {
 .categories-show-page .topic-list a,
 .root-page .topic-list a,
 .topics-search-page .topic-list a,
-.topics-feeds-page .topic-list a {
+.topics-feeds-page .topic-list a,
+.tags-show-page .topic-list a {
   color: #444444;
 }
 
@@ -16909,7 +16911,8 @@ body {
 .categories-show-page .topic-list .meta,
 .root-page .topic-list .meta,
 .topics-search-page .topic-list .meta,
-.topics-feeds-page .topic-list .meta {
+.topics-feeds-page .topic-list .meta,
+.tags-show-page .topic-list .meta {
   font-size: 0.9em;
   color: #b3b3b3;
 }
@@ -16918,7 +16921,8 @@ body {
 .categories-show-page .topic-list .meta a,
 .root-page .topic-list .meta a,
 .topics-search-page .topic-list .meta a,
-.topics-feeds-page .topic-list .meta a {
+.topics-feeds-page .topic-list .meta a,
+.tags-show-page .topic-list .meta a {
   color: #b3b3b3;
 }
 
@@ -16926,7 +16930,8 @@ body {
 .categories-show-page .topic-list .badge,
 .root-page .topic-list .badge,
 .topics-search-page .topic-list .badge,
-.topics-feeds-page .topic-list .badge {
+.topics-feeds-page .topic-list .badge,
+.tags-show-page .topic-list .badge {
   background-color: #d8d8d8;
 }
 
@@ -16934,7 +16939,8 @@ body {
 .categories-show-page .topic-list hr,
 .root-page .topic-list hr,
 .topics-search-page .topic-list hr,
-.topics-feeds-page .topic-list hr {
+.topics-feeds-page .topic-list hr,
+.tags-show-page .topic-list hr {
   margin-top: 12px;
   margin-bottom: 12px;
   border: 0;

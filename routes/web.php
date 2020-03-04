@@ -98,3 +98,6 @@ Route::delete('/users/unfavorites/{topic}', 'FavoritesController@destroy')->name
 
 
 // Route::get('/my_favorites', 'UsersController@myFavorites')->name('users.my_favorites');
+
+// 标签
+Route::resource('tags', 'TagsController', ['only' => ['show']]);

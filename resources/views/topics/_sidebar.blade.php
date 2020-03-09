@@ -47,13 +47,13 @@
               </ul> -->
 
               <!-- 轮播图片 自动 data-ride="carousel" -->
-                <div class="carousel-inner" style="height: 200px;" data-ride="carousel" data-interval="5000">
+                <div class="carousel-inner" style="min-height: 100px;" data-ride="carousel" data-interval="5000">
                     @foreach ($carousels as $carousel)
 
                         @if ($loop->first)
                               <div class="carousel-item active ">
                                   <a href="{{ $carousel->link}}" target="_blank">
-                                         <img src="{{ $carousel->image }}">
+                                        <img src="{{ $carousel->image }}" style="width: 100%;">
                                           <div class="carousel-caption">
                                             <h5> <kbd>{{ $carousel->title }} </kbd></h5>
                                           </div>
@@ -62,7 +62,7 @@
                              @else
                              <div class="carousel-item">
                                   <a href="{{ $carousel->link}}"  target="_blank" >
-                                         <img src="{{ $carousel->image }}">
+                                        <img src="{{ $carousel->image }}" style="width: 100%;">
                                          <div class="carousel-caption">
                                             <h5> <kbd>{{ $carousel->title }} </kbd></h5>
                                           </div>
@@ -115,7 +115,7 @@
         </div>
       <hr class="mt-2 mb-3">
       @foreach ($links as $link)
-        <a class="media mt-1" href="{{ $link->link }}">
+        <a class="media mt-1" href="{{ $link->link }}"  target="_blank">
           <div class="media-body">
             <span class="media-heading text-muted">{{ $link->title }}</span>
           </div>

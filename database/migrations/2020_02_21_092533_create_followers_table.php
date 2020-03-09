@@ -18,7 +18,6 @@ class CreateFollowersTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->index();
             $table->bigInteger('follower_id')->index();
-            $table->timestamps();
         });
     }
 

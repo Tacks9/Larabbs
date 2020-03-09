@@ -16,13 +16,18 @@ class UsersTableSeeder extends Seeder
         $faker = app(Faker\Generator::class);
 
          // 头像假数据
+        $url = env('APP_URL');
         $avatars = [
-            'https://cdn.learnku.com/uploads/images/201710/14/1/s5ehp11z6s.png',
-            'https://cdn.learnku.com/uploads/images/201710/14/1/Lhd1SHqu86.png',
-            'https://cdn.learnku.com/uploads/images/201710/14/1/LOnMrqbHJn.png',
-            'https://cdn.learnku.com/uploads/images/201710/14/1/xAuDMxteQy.png',
-            'https://cdn.learnku.com/uploads/images/201710/14/1/ZqM7iaP4CR.png',
-            'https://cdn.learnku.com/uploads/images/201710/14/1/NDnzMutoxX.png',
+            $url.'/uploads/default/001.jpg',
+            $url.'/uploads/default/002.jpg',
+            $url.'/uploads/default/003.jpg',
+            $url.'/uploads/default/004.jpg',
+            $url.'/uploads/default/005.jpg',
+            $url.'/uploads/default/006.jpg',
+            $url.'/uploads/default/007.jpg',
+            $url.'/uploads/default/008.jpg',
+            $url.'/uploads/default/009.jpg',
+            $url.'/uploads/default/010.jpg',
         ];
         // 生成数据集合
         // factory()生成模型工厂构造器  => 对应加载 UserFactory.php工厂
@@ -50,8 +55,8 @@ class UsersTableSeeder extends Seeder
         // 单独处理第一个用户的数据
         $user = User::find(1);
         $user->name = 'Admin';
-        $user->email = 'admin@qq.com';
-        $user->avatar = 'https://cdn.learnku.com/uploads/images/201710/14/1/ZqM7iaP4CR.png';
+        $user->email = 'tacks321@qq.com';
+        $user->avatar = 'http://www.nyist.edu.cn/img/nglogo.ico';
         $user->save();
 
 

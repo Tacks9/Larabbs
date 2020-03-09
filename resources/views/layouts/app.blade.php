@@ -10,9 +10,10 @@
   <!-- CSRF Token csrf-token 标签是为了方便前端的 JavaScript 脚本获取 CSRF 令牌。 -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title', '首页') - {{ setting('site_name', '南工编程论坛') }}</title>
-  <meta name="description" content="@yield('description', setting('seo_description', 'LaraBBS 爱好者社区。'))" />
-  <meta name="keyword" content="@yield('keyword', setting('seo_keyword', 'LaraBBS,社区,论坛,开发者论坛'))" />
-
+  <meta name="description" content="@yield('description', setting('seo_description', '南阳理工学院，编程论坛'))" />
+  <meta name="keyword" content="@yield('keyword', setting('seo_keyword', '南工，社区,论坛,开发者论坛'))" />
+  <!-- 网站图标 -->
+  <link rel="shortcut icon" href="http://www.nyist.edu.cn/img/nglogo.ico">
   <!-- Styles mix('css/app.css') 会根据 webpack.mix.js 的逻辑来生成 CSS 文件链接。 -->
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 

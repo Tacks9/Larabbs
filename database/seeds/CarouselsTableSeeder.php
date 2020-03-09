@@ -17,14 +17,22 @@ class CarouselsTableSeeder extends Seeder
         $faker = app(Faker\Generator::class);
 
          // 轮播图假数据
+        $url = env('APP_URL');
         $images = [
-            'https://img.zcool.cn/community/01245c5e4cff5ba80120a89558c7b9.jpg@260w_195h_1c_1e_1o_100sh.jpg',
-            'https://img.zcool.cn/community/0112255e4a57cea80120a895964803.jpg@260w_195h_1c_1e_1o_100sh.jpg',
-            'https://img.zcool.cn/community/0122005e48009ca80120a8953c3b55.jpg@260w_195h_1c_1e_1o_100sh.jpg',
-            'https://img.zcool.cn/community/01dffe5e4d0ee9a80120a895074f10.jpg@260w_195h_1c_1e_1o_100sh.jpg',
-            'https://img.zcool.cn/community/0121675e4ca532a80120a895d01113.jpg@260w_195h_1c_1e_1o_100sh.jpg',
-            'https://img.zcool.cn/community/0137c05e4bcf45a80120a895f90617.jpg@260w_195h_1c_1e_1o_100sh.jpg',
+            $url.'/uploads/default/carousel-segmentfault.jpg',
+            $url.'/uploads/default/carousel-php.jpg',
+            $url.'/uploads/default/carousel-imooc.jpg',
+            $url.'/uploads/default/carousel-collect.jpg',
+            $url.'/uploads/default/carousel-ai.jpg',
         ];
+        $links = [
+            'https://segmentfault.com/',
+            'https://www.laruence.com/',
+            'https://www.imooc.com/',
+            'https://www.chenzhuofan.top/',
+            'http://www.studyai.com/',
+        ];
+
         // 生成数据集合
         // factory()生成模型工厂构造器
         // times()  指定生成模型的数量6个
@@ -32,12 +40,13 @@ class CarouselsTableSeeder extends Seeder
         // each()   处理结果对象，进行迭代集合内容 其传递到回调函数
         // 回调函数利用use使用外部变量
         $carousels = factory(Carousel::class)
-                        ->times(6)
+                        ->times(5)
                         ->make()
                         ->each(function ($carousel, $index)
-                                    use ($faker, $images){
+                                    use ($links, $images){
             // $carousel->image = $faker->randomElement($images);
             $carousel->image = $images[$index];
+            $carousel->link  = $links[$index];
         });
 
        // 插入数据

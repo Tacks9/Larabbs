@@ -23,6 +23,13 @@ class ReplyObserver
 
         // 通知话题作者有新的评论
         $reply->topic->user->notify(new TopicReplied($reply));
+
+        // 同时更新当前最新评论的用户
+        /*
+        \DB::table('topics')
+              ->where('id', $reply->topic->id)
+              ->update(['last_reply_user_id' => \Auth::id()]);
+        */
     }
 
     public function creating(Reply $reply)

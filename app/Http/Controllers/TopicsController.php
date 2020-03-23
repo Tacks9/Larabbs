@@ -23,7 +23,7 @@ class TopicsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show', 'search']]);
     }
 
-	public function index(Request $request, Topic $topic, User $user, Link $link, Carousel $carousel,Tag $tag)
+	public function index(Request $request, Topic $topic, Category $category, User $user, Link $link, Carousel $carousel,Tag $tag)
 	{
         // with 预加载 缓存 关联关系   获取url后面order的参数
         $topics = $topic->withOrder($request->order)->where('status',1)

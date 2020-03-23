@@ -18,12 +18,11 @@ class RepliesController extends Controller
     // 评论
 	public function store(ReplyRequest $request, Reply $reply)
 	{
+        // 赋值字段
 		$reply->content = $request->content;
         $reply->user_id = Auth::id();
         $reply->topic_id = $request->topic_id;
-
-        $reply->save();
-
+        $reply->save(); //写入数据库
 		return redirect()->to($reply->topic->link())->with('success', '评论创建成功！');
 	}
 

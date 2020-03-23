@@ -46,6 +46,11 @@
              <!-- 收藏 -->
             @if (Auth::check())
                 @include('topics._favorit_form',['user'=>$topic->user])
+            @else
+               <a href="javascript:;" style="text-decoration:none; color:gray;">
+                  <i class="fa fa-heart-o" aria-hidden="true" ></i>
+                      {{ $topic->favorite_count }}
+                </a>
               @endif
 
           </div>

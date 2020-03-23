@@ -25,17 +25,14 @@ class TopicsController extends Controller
 
 	public function index(Request $request, Topic $topic, User $user, Link $link, Carousel $carousel,Tag $tag)
 	{
-		// $topics = Topic::paginate();
-        // $topics = Topic::with('user', 'category')->paginate(30); // 预加载 缓存 关联关系
-        // $request->order 获取url后面order的参数
+        // with 预加载 缓存 关联关系   获取url后面order的参数
         $topics = $topic->withOrder($request->order)->where('status',1)
                         ->with('user', 'category')
                         ->paginate(20);
         $active_users = $user->getActiveUsers();
-        $links = $link->getAllCached();
-        $carousels = $carousel->getAllCached();
-
-        $tags       = $tag->cacheTags(); // 获取标签 缓存
+        $links        = $link->getAllCached();
+        $carousels    = $carousel->getAllCached();
+        $tags         = $tag->cacheTags(); // 获取标签 缓存
 
         // 传参变量到模板中
         return view('topics.index', compact('topics', 'category', 'active_users', 'links','carousels','tags'));
@@ -83,21 +80,17 @@ class TopicsController extends Controller
     // 存储
 	public function store(TopicRequest $request, Topic $topic)
 	{
-		// $topic = Topic::create($request->all());
-        // fill 方法会将传参的键值数组填充到模型的属性
         $data = $request->all();
-        $topic->fill($data); // 获取所有用户的请求数据数组
+        $topic->fill($data); // 将传参的键值数组填充到模型的属性
         $topic->user_id = Auth::id();  // 当前用户id
-
         $topic->save();                //  保存到数据库中
-
         // 标签_帖子 关联表
         $topic_id = $topic->id;                      // 新增的帖子id
         $tags_arr = explode(',',$data['input_tag']); // 新增的标签id
         // 标签+1
         DB::table('tags')->whereIn('id',$tags_arr)->increment('post_count');
-
         $tdata    = [];
+        // 处理标签与帖子id的对应关系
         foreach ($tags_arr as $tag_id) {
             $tdata[] = [
                 'tag_id'  => $tag_id,
@@ -105,8 +98,7 @@ class TopicsController extends Controller
             ];
         }
         DB::table('tags_topics')->insert($tdata);
-
-        // return redirect()->route('topics.show', $topic->id)->with('success', '帖子创建成功！');
+        // 重定向页面 并且提示创建成功
         return redirect()->to($topic->link())->with('success', '成功创建帖子！');
 	}
 

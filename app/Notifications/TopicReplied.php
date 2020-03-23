@@ -10,8 +10,10 @@ use Illuminate\Notifications\Notification;
 
 use App\Models\Reply;
 
+// 队列系统ShouldQueue
 class TopicReplied extends Notification implements ShouldQueue
 {
+    //   Queueable trait 把通知加入队列
     use Queueable;
 
     public $reply;

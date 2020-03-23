@@ -19,6 +19,7 @@ class FollowersController extends Controller
         // 用户不能对自己进行关注和取消关注
         $this->authorize('follow', $user);
 
+        // 用户是否没有关注
         if ( ! Auth::user()->isFollowing($user->id)) {
             Auth::user()->follow($user->id);
         }
@@ -32,6 +33,7 @@ class FollowersController extends Controller
     {
         $this->authorize('follow', $user);
 
+        // 用户是否已经关注
         if (Auth::user()->isFollowing($user->id)) {
             Auth::user()->unfollow($user->id);
         }

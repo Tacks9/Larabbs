@@ -14,7 +14,6 @@ class ReplyObserver
     public function created(Reply $reply)
     {
         // 模型监控器 监控 created 事件，当 Elequont 模型数据成功创建时，created 方法将会被调用
-
         // 评论加1
         // $reply->topic->increment('reply_count', 1);
 
@@ -23,7 +22,6 @@ class ReplyObserver
 
         // 通知话题作者有新的评论
         $reply->topic->user->notify(new TopicReplied($reply));
-
         // 同时更新当前最新评论的用户
         /*
         \DB::table('topics')

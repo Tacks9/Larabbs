@@ -16,7 +16,7 @@ class CreateTagsTable extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->Increments('id');
             $table->string('name')->index()->comment('标签名称'); // index()索引
-            $table->text('description')->nullable()->comment('关键词 方便检索');
+            $table->string('description')->nullable()->comment('关键词 方便检索');
             $table->integer('post_count')->default(0)->comment('帖子数');
         });
     }

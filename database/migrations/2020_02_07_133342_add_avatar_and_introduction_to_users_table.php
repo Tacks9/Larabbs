@@ -15,8 +15,8 @@ class AddAvatarAndIntroductionToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             // 新增两个字段 头像 个人简介
-            $table->string('avatar')->nullable();
-            $table->string('introduction')->nullable();
+            $table->string('avatar')->nullable()->comment('头像');
+            $table->string('introduction')->nullable()->comment('个人简介');
         });
     }
 

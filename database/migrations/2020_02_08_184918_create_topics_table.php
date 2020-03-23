@@ -10,6 +10,8 @@ class CreateTopicsTable extends Migration
 		Schema::create('topics', function(Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title')->index();
+            $table->text('excerpt')->nullable();
+            $table->string('slug')->nullable();
             $table->text('body');
             $table->bigInteger('user_id')->unsigned()->index();
             $table->integer('category_id')->unsigned()->index();
@@ -17,8 +19,6 @@ class CreateTopicsTable extends Migration
             $table->integer('view_count')->unsigned()->default(0);
             // $table->integer('last_reply_user_id')->unsigned()->default(0);
             // $table->integer('order')->unsigned()->default(0);
-            $table->text('excerpt')->nullable();
-            $table->string('slug')->nullable();
             $table->timestamps();
         });
 	}

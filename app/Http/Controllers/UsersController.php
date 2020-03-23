@@ -14,7 +14,9 @@ class UsersController extends Controller
     public function __construct()
     {
         // 调用中间件  除了show 其他都需要登录才可以访问 首选 except 方法
-        $this->middleware('auth', ['except' => ['show']]);
+        // $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth'); // 不登录不能访问用户页面
+
     }
 
     // 个人页面

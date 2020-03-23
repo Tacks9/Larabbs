@@ -19,10 +19,10 @@ trait ActiveUserHelper
     protected $topic_weight = 4; // 话题权重
     protected $reply_weight = 1; // 回复权重
     protected $pass_days = 7;    // 多少天内发表过内容
-    protected $user_number = 6; // 取出来多少用户
+    protected $user_number = 8; // 取出来多少用户
 
     // 缓存相关配置
-    protected $cache_key = 'larabbs_active_users';
+    protected $cache_key = 'nyistbbs_active_users';
     protected $cache_expire_in_seconds = 65 * 60;
 
     public function getActiveUsers()
@@ -44,35 +44,27 @@ trait ActiveUserHelper
 
     private function calculateActiveUsers()
     {
-        $this->calculateTopicScore();
-        $this->calculateReplyScore();
-
+        $this->calculateTopicScore();// 计算帖子得分
+        $this->calculateReplyScore();// 计算评论得分
         // 数组按照得分排序
         $users = Arr::sort($this->users, function ($user) {
             return $user['score'];
         });
-
         // 我们需要的是倒序，高分靠前，第二个参数为保持数组的 KEY 不变
         $users = array_reverse($users, true);
-
         // 只获取我们想要的数量
         $users = array_slice($users, 0, $this->user_number, true);
-
         // 新建一个空集合
         $active_users = collect();
-
         foreach ($users as $user_id => $user) {
             // 找寻下是否可以找到用户
             $user = $this->find($user_id);
-
             // 如果数据库里有该用户的话
             if ($user) {
-
                 // 将此用户实体放入集合的末尾
                 $active_users->push($user);
             }
         }
-
         // 返回数据
         return $active_users;
     }

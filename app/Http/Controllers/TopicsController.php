@@ -205,7 +205,7 @@ class TopicsController extends Controller
     public function feeds(Request $request,Topic $topic, User $user, Link $link, Carousel $carousel,Tag $tag)
     {
         $user = Auth::user();
-        $topics = $user->feed()->orderBy('updated_at','desc')->paginate(20);
+        $topics = $user->feed()->where('status',1)->orderBy('updated_at','desc')->paginate(20);
         $count  = $user->feed()->count();
 
         $active_users = $user->getActiveUsers();

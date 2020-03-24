@@ -14,7 +14,9 @@ class DatabaseSeeder extends Seeder
         // $this->call(LinksTableSeeder::class);
         // 使用seed进行填充 校内链接资源
 
-        $this->call(CarouselsTableSeeder::class);
+        // $this->call(CarouselsTableSeeder::class);
+        // 使用seed进行填充 特色推荐
+
         $this->call(FollowersTableSeeder::class);
 
     }

@@ -16968,6 +16968,7 @@ body {
   overflow: hidden;
   line-height: 1.6;
   word-wrap: break-word;
+  /* 代码块自动换行 */
 }
 
 .simditor-body a,
@@ -17362,7 +17363,6 @@ body {
   padding: 0;
   margin: 0;
   font-size: 100%;
-  white-space: pre;
   background: transparent;
   border: 0;
 }
@@ -17411,6 +17411,24 @@ body {
 .topic-body pre code:before,
 .topic-body pre code:after {
   content: normal;
+}
+
+.simditor-body pre,
+.topic-body pre {
+  font-family: "monaco", "Consolas", "Liberation Mono", Courier, monospace;
+  font-size: 13px;
+  line-height: 18px;
+  background: #384548;
+  border: 1px solid #F0F0F0;
+  padding: 10px 3px 10px 10px;
+  box-sizing: border-box;
+  word-wrap: break-word !important;
+  white-space: pre-wrap !important;
+}
+
+.simditor-body pre > code > span,
+.topic-body pre > code > span {
+  background-color: #384548 !important;
 }
 
 .topics-show-page .card,

@@ -5,13 +5,13 @@ return [
 
 // 基本配置
     // 应用程序的名称
-    'name' => env('APP_NAME', 'LaraBBS'),
+    'name' => env('APP_NAME', 'NYIST-BBS'),
     // 当前应用环境    优先读取配置文件.env
     'env' => env('APP_ENV', 'production'),
     // 调试模式
     'debug' => env('APP_DEBUG', false),
     // 应用程序URL
-    'url' => env('APP_URL', 'http://larabbs.test'),
+    'url' => env('APP_URL', 'http://nyistbbs.test'),
     // 应该将其设置为应用程序的根目录 在使用Artisan命令行工具的时候，可能会用到
     'asset_url' => env('ASSET_URL', null),
     // 应用程序的默认时区

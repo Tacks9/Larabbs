@@ -2,7 +2,8 @@
 
 namespace App\Models\Traits;
 
-use Redis;
+# 防止Predis与redis之间有冲突
+use Illuminate\Support\Facades\Redis;
 use Carbon\Carbon;
 
 trait LastActivedAtHelper

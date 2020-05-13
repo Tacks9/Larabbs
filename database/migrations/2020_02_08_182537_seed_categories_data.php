@@ -31,7 +31,7 @@ class SeedCategoriesData extends Migration
                 'description' => '学习路线、认真规划！',
             ],
             [
-                'name'        => '摸鱼时刻',
+                'name'        => '生活娱乐',
                 'description' => '适当放松、找寻快乐！',
             ],
             [
@@ -40,7 +40,8 @@ class SeedCategoriesData extends Migration
             ],
         ];
         // 填充数据
-        DB::table('categories')->insert($categories);
+        // DB::table('categories')->insert($categories);
+        // 转为sql导入
     }
 
     /**

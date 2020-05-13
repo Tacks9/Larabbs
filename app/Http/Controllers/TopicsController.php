@@ -84,20 +84,29 @@ class TopicsController extends Controller
         $topic->fill($data); // 将传参的键值数组填充到模型的属性
         $topic->user_id = Auth::id();  // 当前用户id
         $topic->save();                //  保存到数据库中
-        // 标签_帖子 关联表
-        $topic_id = $topic->id;                      // 新增的帖子id
-        $tags_arr = explode(',',$data['input_tag']); // 新增的标签id
-        // 标签+1
-        DB::table('tags')->whereIn('id',$tags_arr)->increment('post_count');
-        $tdata    = [];
-        // 处理标签与帖子id的对应关系
-        foreach ($tags_arr as $tag_id) {
-            $tdata[] = [
-                'tag_id'  => $tag_id,
-                'topic_id'=> $topic_id,
-            ];
+
+        // 是否有标签
+        if(!empty($data['input_tag'])) {
+            // 标签_帖子 关联表
+            $topic_id = $topic->id;                      // 新增的帖子id
+            $tags_arr = explode(',',$data['input_tag']); // 新增的标签id
+            // 标签+1
+            DB::table('tags')->whereIn('id',$tags_arr)->increment('post_count');
+            $tdata    = [];
+            // 处理标签与帖子id的对应关系
+            foreach ($tags_arr as $tag_id) {
+                // 自动计算每次的标签数量
+                // $tag_n = DB::table('tags_topics')->where('tag_id',$tag_id)->count() + 1;
+                // DB::table('tags')->where('id',$tag_id)->update(['post_count' => $tag_n]);
+
+                $tdata[] = [
+                    'tag_id'  => $tag_id,
+                    'topic_id'=> $topic_id,
+                ];
+            }
+            DB::table('tags_topics')->insert($tdata);
         }
-        DB::table('tags_topics')->insert($tdata);
+
         // 重定向页面 并且提示创建成功
         return redirect()->to($topic->link())->with('success', '成功创建帖子！');
 	}
@@ -137,16 +146,19 @@ class TopicsController extends Controller
         // 删除之前的标签
         DB::table('tags_topics')->where('topic_id',$topic_id)->delete();
 
-        $tags_arr = explode(',',$data['input_tag']); // 编辑的标签id
-        $tdata    = [];
+        // 空标签也行
+        if(!empty($data['input_tag'])) {
+            $tags_arr = explode(',',$data['input_tag']); // 编辑的标签id
+            $tdata    = [];
 
-        foreach ($tags_arr as $tag_id) {
-            $tdata[] = [
-                'tag_id'  => $tag_id,
-                'topic_id'=> $topic_id,
-            ];
+            foreach ($tags_arr as $tag_id) {
+                $tdata[] = [
+                    'tag_id'  => $tag_id,
+                    'topic_id'=> $topic_id,
+                ];
+            }
+            DB::table('tags_topics')->insert($tdata);
         }
-        DB::table('tags_topics')->insert($tdata);
 
         return redirect()->to($topic->link())->with('success', '更新帖子成功！');
 

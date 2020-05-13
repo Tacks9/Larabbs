@@ -47,7 +47,7 @@
               </ul> -->
 
               <!-- 轮播图片 自动 data-ride="carousel" -->
-                <div class="carousel-inner" style="min-height: 100px;" data-ride="carousel" data-interval="5000">
+                <div class="carousel-inner" style="height: 100px;" data-ride="carousel" data-interval="5000">
                     @foreach ($carousels as $carousel)
 
                         @if ($loop->first)

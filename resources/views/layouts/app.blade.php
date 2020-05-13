@@ -22,6 +22,7 @@
 </head>
 
 <body>
+  <top  id="top"></top>
   <!-- route_class() 辅助函数  针对某个页面做页面样式定制 -->
   <div id="app" class="{{ route_class() }}-page">
     <!-- 加载顶部导航区块的子模板。 文章分类的自动缓存加载 -->
@@ -37,6 +38,12 @@
       <!-- 加载页面尾部导航区块的子模板 -->
     @include('layouts._footer')
   </div>
+  <div style="position:fixed;right:40px;bottom:100px;font-size: 18px;">
+    <a href="#top"  style="text-decoration: none;">🔼</a><br>
+    <a href="#bottom" style="text-decoration: none;"> 🔽</a>
+  </div>
+
+  <top  id="bottom"></top>
 
   <!-- Scripts -->
   <script src="{{ mix('js/app.js') }}"></script>
